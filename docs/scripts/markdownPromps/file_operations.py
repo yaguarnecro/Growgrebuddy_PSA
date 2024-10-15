@@ -1,58 +1,37 @@
 import os
-import uuid
 import re
+import logging
 
-def get_next_filename(base_name, folder_selected):
-    """Get the next available filename by checking existing files in the directory.
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
-    Args:
-        base_name (str): The base name of the file (without extension).
-        folder_selected (str): The folder where files will be saved.
+def get_next_filename(base_name, folder):
+    """Get the next available filename by checking existing files in the directory."""
+    pattern = re.compile(rf"{base_name}(\d+)?\.md")
+    existing_files = [f for f in os.listdir(folder) if pattern.match(f)]
+    
+    if not existing_files:
+        return f"{base_name}1.md"
+    
+    numbers = [int(pattern.match(f).group(1) or 0) for f in existing_files]
+    next_number = max(numbers) + 1
+    return f"{base_name}{next_number}.md"
 
-    Returns:
-        str: The next available filename.
-    """
-    existing_files = os.listdir(folder_selected)
-    pattern = re.compile(rf"^{base_name}(\d+)?\.md$")
-    max_number = 0
+def save_markdown_files(prompts_md, results_md, folder_selected, project_stage, prompts_filename, results_filename):
+    """Save the generated markdown files to the specified folder."""
+    try:
+        prompts_file_path = os.path.join(folder_selected, prompts_filename)
+        results_file_path = os.path.join(folder_selected, results_filename)
 
-    for file in existing_files:
-        match = pattern.match(file)
-        if match:
-            number = match.group(1)
-            if number:
-                max_number = max(max_number, int(number))
-            else:
-                # If there's a file without a number suffix, treat it as the highest
-                max_number = max(max_number, 1)
+        with open(prompts_file_path, 'w') as f:
+            f.write(prompts_md)
+        logging.info(f"Saved prompts markdown to {prompts_file_path}")
 
-    return f"{base_name}{max_number + 1}.md"
+        with open(results_file_path, 'w') as f:
+            f.write(results_md)
+        logging.info(f"Saved results markdown to {results_file_path}")
 
-def save_markdown_files(prompts_md, results_md, folder_selected, project_stage):
-    """Save the generated markdown files to the specified folder.
-
-    Args:
-        prompts_md (str): The markdown content for prompts.
-        results_md (str): The markdown content for results.
-        folder_selected (str): The folder where files will be saved.
-        project_stage (str): The current stage of the project.
-
-    Returns:
-        tuple: Paths of the saved prompts and results markdown files.
-    """
-    prompts_base_name = "prompts"
-    results_base_name = "results"
-
-    prompts_file_name = get_next_filename(prompts_base_name, folder_selected)
-    results_file_name = get_next_filename(results_base_name, folder_selected)
-
-    prompts_file_path = os.path.join(folder_selected, prompts_file_name)
-    results_file_path = os.path.join(folder_selected, results_file_name)
-
-    with open(prompts_file_path, 'w') as f:
-        f.write(prompts_md)
-
-    with open(results_file_path, 'w') as f:
-        f.write(results_md)
-
-    return prompts_file_path, results_file_path
+        return prompts_file_path, results_file_path
+    except Exception as e:
+        logging.error(f"Error saving markdown files: {e}")
+        raise
