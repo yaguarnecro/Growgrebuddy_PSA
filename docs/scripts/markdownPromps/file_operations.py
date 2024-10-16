@@ -23,11 +23,11 @@ def save_markdown_files(prompts_md, results_md, folder_selected, project_stage, 
         prompts_file_path = os.path.join(folder_selected, prompts_filename)
         results_file_path = os.path.join(folder_selected, results_filename)
 
-        with open(prompts_file_path, 'w') as f:
+        with open(prompts_file_path, 'w', encoding='utf-8') as f:
             f.write(prompts_md)
         logging.info(f"Saved prompts markdown to {prompts_file_path}")
 
-        with open(results_file_path, 'w') as f:
+        with open(results_file_path, 'w', encoding='utf-8') as f:
             f.write(results_md)
         logging.info(f"Saved results markdown to {results_file_path}")
 

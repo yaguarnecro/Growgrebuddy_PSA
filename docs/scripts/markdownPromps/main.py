@@ -6,257 +6,12 @@ from markdown_generator import generate_prompts_md, generate_results_md
 from utils import process_input as utils_process_input
 from file_operations import get_next_filename, save_markdown_files
 import os
+import re
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-class MarkdownGeneratorApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-
-        self.title("Markdown Generator")
-        self.geometry("800x600")
-        self.configure(bg='#2b2b2b')
-
-        self.style = ttk.Style(self)
-        self.style.theme_use('clam')
-        self.configure_styles()
-
-        self.create_widgets()
-        self.create_layout()
-        self.create_bindings()
-
-    def configure_styles(self):
-        self.style.configure('TLabel', background='#2b2b2b', foreground='white')
-        self.style.configure('TButton', background='#4a4a4a', foreground='white')
-        self.style.map('TButton', background=[('active', '#5a5a5a')])
-        self.style.configure('TFrame', background='#2b2b2b')
-
-    def create_widgets(self):
-        self.main_frame = ttk.Frame(self)
-        
-        self.instructions = ttk.Label(self.main_frame, text="Use '§§§' to create multiple entries", wraplength=300)
-        
-        self.prompts_frame = ttk.LabelFrame(self.main_frame, text="Prompts")
-        self.results_frame = ttk.LabelFrame(self.main_frame, text="Results")
-
-        prompt_placeholder = "Enter your prompt here...\n§§§\nYou can add more prompts like this"
-        result_placeholder = "Enter your response here...\n§§§\nYou can add more responses like this"
-
-        self.input_text_prompts = TableText(self.prompts_frame, is_prompt=True, placeholder_text=prompt_placeholder, width=40, height=10)
-        self.input_text_results = TableText(self.results_frame, is_prompt=False, placeholder_text=result_placeholder, width=40, height=10)
-
-        self.process_button = ttk.Button(self.main_frame, text="Process", command=self.handle_input)
-        self.process_button.state(['disabled'])
-
-        self.output_text = scrolledtext.ScrolledText(self.main_frame, wrap=tk.WORD, width=80, height=10, bg='#1e1e1e', fg='white')
-        self.output_text.tag_configure("error", foreground="red")
-        self.output_text.tag_configure("info", foreground="lightblue")
-        self.output_text.tag_configure("success", foreground="lightgreen")
-
-        self.log_frame = ttk.LabelFrame(self.main_frame, text="Log")
-        self.log_text = scrolledtext.ScrolledText(self.log_frame, wrap=tk.WORD, width=80, height=5, bg='#1e1e1e', fg='white')
-        self.log_text.tag_configure("file", foreground="yellow")
-        self.log_text.tag_configure("found", foreground="lightgreen")
-        self.log_text.tag_configure("not_found", foreground="red")
-
-        self.toggle_log_button = ttk.Button(self.main_frame, text="Show Log", command=self.toggle_log)
-
-        self.status_bar = ttk.Label(self, text="Ready", anchor=tk.W)
-
-    def create_layout(self):
-        self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-
-        self.instructions.grid(row=0, column=0, columnspan=2, pady=(0, 10))
-
-        self.prompts_frame.grid(row=1, column=0, padx=5, pady=5, sticky="nsew")
-        self.results_frame.grid(row=1, column=1, padx=5, pady=5, sticky="nsew")
-
-        self.input_text_prompts.pack(fill=tk.BOTH, expand=True)
-        self.input_text_results.pack(fill=tk.BOTH, expand=True)
-
-        self.process_button.grid(row=2, column=0, columnspan=2, pady=10)
-
-        self.output_text.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
-
-        self.toggle_log_button.grid(row=4, column=0, columnspan=2, pady=(0, 5))
-        self.log_frame.grid(row=5, column=0, columnspan=2, pady=5, sticky="nsew")
-        self.log_text.pack(fill=tk.BOTH, expand=True)
-
-        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
-
-        self.main_frame.columnconfigure(0, weight=1)
-        self.main_frame.columnconfigure(1, weight=1)
-        self.main_frame.rowconfigure(1, weight=1)
-        self.main_frame.rowconfigure(3, weight=1)
-        self.main_frame.rowconfigure(5, weight=1)
-
-    def create_bindings(self):
-        self.input_text_prompts.bind("<KeyRelease>", self.update_identifiers)
-        self.input_text_results.bind("<KeyRelease>", self.check_fields)
-
-    def update_identifiers(self, event=None):
-        self.input_text_results.identifiers = self.input_text_prompts.identifiers
-        self.input_text_results.update_rows()  # Update the rows to reflect the new identifiers
-        self.check_fields(event)
-
-    def toggle_log(self):
-        if self.log_frame.winfo_viewable():
-            self.log_frame.grid_remove()
-            self.toggle_log_button.config(text="Show Log")
-        else:
-            self.log_frame.grid()
-            self.toggle_log_button.config(text="Hide Log")
-
-    def check_fields(self, event=None):
-        prompt_text = self.input_text_prompts.get("1.0", tk.END).strip()
-        response_text = self.input_text_results.get("1.0", tk.END).strip()
-        prompt_empty = prompt_text == '' or prompt_text == self.input_text_prompts.placeholder_text
-        response_empty = response_text == '' or response_text == self.input_text_results.placeholder_text
-
-        if not prompt_empty and not response_empty:
-            self.process_button.state(['!disabled'])
-        else:
-            self.process_button.state(['disabled'])
-
-    def handle_input(self):
-        """Process the input from the user and generate markdown files."""
-        try:
-            # Disable the UI
-            self.process_button.state(['disabled'])
-            self.input_text_prompts.config(state=tk.DISABLED)
-            self.input_text_results.config(state=tk.DISABLED)
-            self.output_text.config(state=tk.NORMAL)
-            self.output_text.delete(1.0, tk.END)
-            self.output_text.insert(tk.END, "Processing...\n", 'info')
-            self.output_text.config(state=tk.DISABLED)
-            self.update()  # Force update of the UI
-
-            # Get the input text
-            prompts_text = self.input_text_prompts.get("1.0", tk.END).strip()
-            results_text = self.input_text_results.get("1.0", tk.END).strip()
-
-            # Remove placeholder text if present
-            if prompts_text == self.input_text_prompts.placeholder_text:
-                prompts_text = ""
-            if results_text == self.input_text_results.placeholder_text:
-                results_text = ""
-
-            # Validate input fields
-            if not prompts_text or not results_text:
-                raise ValueError("Both prompt and response fields must be filled.")
-
-            # Ask for output directory
-            output_directory = filedialog.askdirectory(title="Select Output Directory")
-            if not output_directory:
-                raise ValueError("No output directory selected. Process aborted.")
-
-            # Use the name of the selected folder as the project name
-            project_name = os.path.basename(output_directory)
-
-            # Process the input text
-            identifiers = [row['identifier']['text'] for row in self.input_text_results.rows if row['identifier']['text'] != "○"]
-            # Ensure we have at least one identifier
-            if not identifiers:
-                identifiers = ['1']
-            conversation = utils_process_input(prompts_text, results_text, identifiers)
-            if not conversation:
-                raise ValueError("Failed to process input. Please check your prompts and results.")
-
-            # Check the number of prompts and responses
-            prompt_count = len(prompts_text.split('\n§§§\n'))
-            response_count = len(results_text.split('\n§§§\n'))
-
-            # Generate markdown
-            prompts_markdown = generate_prompts_md(conversation, project_name)
-            results_markdown = generate_results_md(conversation, project_name)
-
-            # Get unique filenames
-            prompts_filename = get_next_filename("prompts", output_directory)
-            results_filename = get_next_filename("results", output_directory)
-
-            # Save markdown files
-            prompts_file_path, results_file_path = save_markdown_files(
-                prompts_markdown, 
-                results_markdown, 
-                output_directory, 
-                project_name,
-                prompts_filename,
-                results_filename
-            )
-
-            # Display success message
-            self.output_text.config(state=tk.NORMAL)
-            self.output_text.delete(1.0, tk.END)
-            self.output_text.insert(tk.END, "Success: ", 'success')
-            self.output_text.insert(tk.END, "Markdown files generated successfully.\n", 'info')
-            self.output_text.insert(tk.END, f"Prompts file: {prompts_file_path}\n", 'info')
-            self.output_text.insert(tk.END, f"Results file: {results_file_path}\n", 'info')
-            self.output_text.insert(tk.END, f"Number of prompts: {prompt_count}\n", 'info')
-            self.output_text.insert(tk.END, f"Number of responses: {response_count}\n", 'info')
-            self.output_text.insert(tk.END, f"Number of entries generated: {len(conversation)}\n", 'info')
-            self.output_text.config(state=tk.DISABLED)
-
-            # Update log with detailed information
-            self.update_log(prompts_file_path, results_file_path, conversation)
-
-            # Show a success message box
-            messagebox.showinfo("Success", "Markdown files generated successfully!")
-
-        except ValueError as ve:
-            # Display error message in output text area
-            self.output_text.config(state=tk.NORMAL)
-            self.output_text.delete(1.0, tk.END)
-            self.output_text.insert(tk.END, "Error: ", 'error')
-            self.output_text.insert(tk.END, f"{str(ve)}\n", 'info')
-            self.output_text.config(state=tk.DISABLED)
-
-            # Show an error message box
-            messagebox.showerror("Error", str(ve))
-
-        except Exception as e:
-            # Display unexpected error message in output text area
-            self.output_text.config(state=tk.NORMAL)
-            self.output_text.delete(1.0, tk.END)
-            self.output_text.insert(tk.END, "Unexpected Error: ", 'error')
-            self.output_text.insert(tk.END, f"{str(e)}\n", 'info')
-            self.output_text.config(state=tk.DISABLED)
-
-            # Log the error
-            logging.error(f"Unexpected error: {str(e)}")
-            logging.error(f"Error details: ", exc_info=True)  # This will log the full traceback
-
-            # Show an error message box
-            messagebox.showerror("Unexpected Error", f"An unexpected error occurred: {str(e)}")
-
-        finally:
-            # Re-enable the UI
-            self.process_button.state(['!disabled'])
-            self.input_text_prompts.config(state=tk.NORMAL)
-            self.input_text_results.config(state=tk.NORMAL)
-
-    def update_log(self, prompts_file_path, results_file_path, conversation):
-        self.log_text.config(state=tk.NORMAL)
-        self.log_text.delete(1.0, tk.END)
-        
-        self.log_text.insert(tk.END, "Created Files:\n", "file")
-        self.log_text.insert(tk.END, f"Prompts file: {prompts_file_path}\n", "file")
-        self.log_text.insert(tk.END, f"Results file: {results_file_path}\n\n", "file")
-
-        self.log_text.insert(tk.END, "Found Values:\n", "found")
-        for item in conversation:
-            for key, value in item.items():
-                if value:
-                    self.log_text.insert(tk.END, f"{key}: {value}\n", "found")
-    
-        self.log_text.insert(tk.END, "\nNot Found Values:\n", "not_found")
-        for item in conversation:
-            for key, value in item.items():
-                if not value:
-                    self.log_text.insert(tk.END, f"{key}\n", "not_found")
-
-        self.log_text.config(state=tk.DISABLED)
-
+# Add TableText class definition
 class TableText(tk.Frame):
     def __init__(self, master, is_prompt=True, placeholder_text="", **kwargs):
         super().__init__(master, bg='white')
@@ -345,19 +100,16 @@ class TableText(tk.Frame):
         content = self.text.get("1.0", "end-1c")
         lines = content.split('\n')
         
-        # Add or remove rows as needed
         while len(self.rows) < len(lines):
             self.add_row()
         while len(self.rows) > len(lines):
             self.remove_row()
         
-        # Update identifiers for prompt section
         if self.is_prompt:
             self.identifiers = [str(i+1) for i in range(len(lines))]
-            if not self.identifiers:  # Ensure there's always at least one identifier
+            if not self.identifiers:
                 self.identifiers = ['1']
         
-        # Show/hide rows based on content
         for i, line in enumerate(lines):
             self.rows[i]['checkbox'].pack()
             self.rows[i]['separator'].pack()
@@ -383,16 +135,9 @@ class TableText(tk.Frame):
             current_index = self.text.index(tk.INSERT)
             line, column = map(int, current_index.split('.'))
             
-            # Insert a newline
             self.text.insert(f"{line}.end", "\n")
-            
-            # Insert "§§§" on the next line
             self.text.insert(f"{line+1}.0", "§§§")
-            
-            # Insert another newline
             self.text.insert(f"{line+1}.end", "\n")
-            
-            # Move cursor to the start of the new empty line
             self.text.mark_set(tk.INSERT, f"{line+2}.0")
             
             self.update_rows()
@@ -423,7 +168,7 @@ class TableText(tk.Frame):
             row['checkbox'].configure(height=height)
             row['separator'].configure(height=height)
             row['identifier'].configure(height=height)
-            row['border'].configure(height=2)  # Keep border height constant
+            row['border'].configure(height=2)
 
     def checkbox_clicked(self, row_index):
         if self.rows[row_index]['checkbox_var'].get():
@@ -434,17 +179,11 @@ class TableText(tk.Frame):
     def insert_separator(self, row_index):
         current_line = self.text.get(f"{row_index+1}.0", f"{row_index+1}.end")
         if not current_line.endswith("§§§"):
-            # Insert a newline if we're not at the end of the line
             if self.text.get(f"{row_index+1}.end") != "\n":
                 self.text.insert(f"{row_index+1}.end", "\n")
             
-            # Insert "§§§" on the next line
             self.text.insert(f"{row_index+2}.0", "§§§")
-            
-            # Insert another newline
             self.text.insert(f"{row_index+2}.end", "\n")
-            
-            # Move cursor to the start of the new empty line
             self.text.mark_set(tk.INSERT, f"{row_index+3}.0")
         
         self.rows[row_index]['checkbox_var'].set(False)
@@ -453,14 +192,12 @@ class TableText(tk.Frame):
 
     def show_dropdown(self, row_index):
         if self.is_prompt:
-            return  # Do nothing for prompt section
+            return
         
-        # Create a toplevel window for the dropdown
         dropdown = tk.Toplevel(self)
         dropdown.overrideredirect(True)
         dropdown.geometry(f"+{self.winfo_rootx() + self.rows[row_index]['identifier'].winfo_x()}+{self.winfo_rooty() + self.rows[row_index]['identifier'].winfo_y() + self.rows[row_index]['identifier'].winfo_height()}")
         
-        # Create a listbox with identifiers
         listbox = tk.Listbox(dropdown)
         listbox.pack(fill=tk.BOTH, expand=True)
         
@@ -468,17 +205,19 @@ class TableText(tk.Frame):
             listbox.insert(tk.END, identifier)
         
         def on_select(event):
-            if listbox.curselection():  # Check if an item is selected
+            if listbox.curselection():
                 selection = listbox.get(listbox.curselection())
                 self.rows[row_index]['identifier'].config(text=selection)
             dropdown.destroy()
         
         listbox.bind('<<ListboxSelect>>', on_select)
         
-        # If the listbox is empty, show a message
         if listbox.size() == 0:
             listbox.insert(tk.END, "No identifiers available")
             listbox.config(state=tk.DISABLED)
+
+    def on_paste(self, event):
+        self.after(10, self.on_text_change)
 
     def get(self, *args, **kwargs):
         return self.text.get(*args, **kwargs)
@@ -500,8 +239,321 @@ class TableText(tk.Frame):
     def configure(self, **kwargs):
         self.config(**kwargs)
 
-    def on_paste(self, event):
-        self.after(10, self.on_text_change)  # Schedule on_text_change to run after the paste is complete
+class InputTab(ttk.Frame):
+    def __init__(self, master, is_single_entry=True, on_text_change=None):
+        super().__init__(master)
+        self.is_single_entry = is_single_entry
+        self.on_text_change = on_text_change
+        self.create_widgets()
+        self.create_layout()
+
+    def create_widgets(self):
+        if self.is_single_entry:
+            self.prompts_frame = ttk.LabelFrame(self, text="Prompt")
+            self.results_frame = ttk.LabelFrame(self, text="Result")
+            self.input_text_prompts = scrolledtext.ScrolledText(self.prompts_frame, wrap=tk.WORD, width=40, height=10)
+            self.input_text_results = scrolledtext.ScrolledText(self.results_frame, wrap=tk.WORD, width=40, height=10)
+            
+            self.input_text_prompts.bind("<KeyRelease>", self.text_changed)
+            self.input_text_results.bind("<KeyRelease>", self.text_changed)
+        else:
+            self.instructions = ttk.Label(self, text="Use '§§§' to create multiple entries", wraplength=300)
+            self.prompts_frame = ttk.LabelFrame(self, text="Prompts")
+            self.results_frame = ttk.LabelFrame(self, text="Results")
+            prompt_placeholder = "Enter your prompt here...\n§§§\nYou can add more prompts like this"
+            result_placeholder = "Enter your response here...\n§§§\nYou can add more responses like this"
+            self.input_text_prompts = TableText(self.prompts_frame, is_prompt=True, placeholder_text=prompt_placeholder, width=40, height=10)
+            self.input_text_results = TableText(self.results_frame, is_prompt=False, placeholder_text=result_placeholder, width=40, height=10)
+            
+            self.input_text_prompts.text.bind("<KeyRelease>", self.text_changed)
+            self.input_text_results.text.bind("<KeyRelease>", self.text_changed)
+
+    def create_layout(self):
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.rowconfigure(1, weight=1)
+
+        if not self.is_single_entry:
+            self.instructions.grid(row=0, column=0, columnspan=2, pady=(0, 10))
+        self.prompts_frame.grid(row=1, column=0, padx=5, pady=5, sticky="nsew")
+        self.results_frame.grid(row=1, column=1, padx=5, pady=5, sticky="nsew")
+        self.input_text_prompts.pack(fill=tk.BOTH, expand=True)
+        self.input_text_results.pack(fill=tk.BOTH, expand=True)
+
+    def text_changed(self, event=None):
+        if self.on_text_change:
+            self.on_text_change()
+
+class ControlPanel(tk.Frame):
+    def __init__(self, master, process_command, toggle_log_command):
+        super().__init__(master, bg='#2b2b2b')
+        print("Initializing ControlPanel")
+        self.create_widgets(process_command, toggle_log_command)
+        self.create_layout()
+
+    def create_widgets(self, process_command, toggle_log_command):
+        self.process_button = tk.Button(self, text="Process", command=process_command, 
+                                        bg='#4a4a4a', fg='white', activebackground='#5a5a5a')
+        self.toggle_log_button = tk.Button(self, text="Show Log", command=toggle_log_command,
+                                           bg='#4a4a4a', fg='white', activebackground='#5a5a5a')
+        self.progress_bar = ttk.Progressbar(self, orient=tk.HORIZONTAL, length=200, mode='indeterminate')
+
+    def create_layout(self):
+        self.process_button.pack(side=tk.LEFT, padx=(0, 10))
+        self.toggle_log_button.pack(side=tk.LEFT)
+        self.progress_bar.pack(side=tk.LEFT, padx=(10, 0))
+
+class OutputPanel(ttk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.create_widgets()
+        self.create_layout()
+
+    def create_widgets(self):
+        self.output_text = scrolledtext.ScrolledText(self, wrap=tk.WORD, width=80, height=10, bg='#1e1e1e', fg='white')
+        self.output_text.tag_configure("error", foreground="red")
+        self.output_text.tag_configure("info", foreground="lightblue")
+        self.output_text.tag_configure("success", foreground="lightgreen")
+
+        self.log_frame = ttk.LabelFrame(self, text="Log")
+        self.log_text = scrolledtext.ScrolledText(self.log_frame, wrap=tk.WORD, width=80, height=5, bg='#1e1e1e', fg='white')
+        self.log_text.tag_configure("file", foreground="yellow")
+        self.log_text.tag_configure("found", foreground="lightgreen")
+        self.log_text.tag_configure("not_found", foreground="red")
+
+    def create_layout(self):
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+
+        self.output_text.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+        self.log_frame.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
+        self.log_text.pack(fill=tk.BOTH, expand=True)
+
+def read_ai_tools(file_path):
+    ai_tools = ["Pick an AI tool"]
+    try:
+        with open(file_path, 'r') as file:
+            for line in file:
+                if line.startswith('##'):
+                    ai_tools.append(line.strip('# \n'))
+    except FileNotFoundError:
+        print(f"Warning: AI tools file not found at {file_path}")
+    return ai_tools
+
+class MarkdownGeneratorApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        self.title("Markdown Generator")
+        self.geometry("1000x800")
+        self.configure(bg='#2b2b2b')
+
+        self.style = ttk.Style(self)
+        self.style.theme_use('clam')
+        self.configure_styles()
+
+        self.selected_folder = None
+        
+        # Initialize AI tool variables
+        self.ai_tool = tk.StringVar()
+        self.ai_tool.set("Pick an AI tool")
+        self.ai_tools = read_ai_tools("docs/aiPrompts/templates/[AI Tool used].md")
+
+        self.create_widgets()
+        print("Widgets created successfully")
+        self.create_layout()
+        print("Layout created successfully")
+        self.create_bindings()
+        print("Bindings created successfully")
+
+        # Force update of the window
+        self.update_idletasks()
+        self.update()
+
+    def configure_styles(self):
+        self.style.configure('TLabel', background='#2b2b2b', foreground='white')
+        self.style.configure('TButton', background='#4a4a4a', foreground='white')
+        self.style.map('TButton', background=[('active', '#5a5a5a')])
+        self.style.configure('TFrame', background='#2b2b2b')
+
+    def create_widgets(self):
+        # AI Tool Dropdown
+        self.ai_tool_dropdown = ttk.Combobox(self, textvariable=self.ai_tool, values=self.ai_tools, state="readonly")
+
+        # Folder placeholder
+        self.folder_placeholder = ttk.Label(self, text="Folder...", anchor=tk.W)
+
+        # Notebook (tabs)
+        self.notebook = ttk.Notebook(self)
+        self.single_entry_tab = InputTab(self.notebook, is_single_entry=True, on_text_change=self.enable_process_button)
+        self.multiple_entry_tab = InputTab(self.notebook, is_single_entry=False, on_text_change=self.enable_process_button)
+        self.notebook.add(self.single_entry_tab, text="Single Entry")
+        self.notebook.add(self.multiple_entry_tab, text="Multiple Entry")
+
+        # Control Panel
+        self.control_panel = ControlPanel(self, self.handle_input, self.toggle_log)
+
+        # Output Panel
+        self.output_panel = OutputPanel(self)
+
+        # Status Bar
+        self.status_bar = ttk.Label(self, text="Ready", anchor=tk.W)
+
+        # Initial check to enable/disable process button
+        self.enable_process_button()
+
+    def create_layout(self):
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(2, weight=1)
+        self.grid_rowconfigure(3, weight=0)  # Changed from 1 to 0
+        self.grid_rowconfigure(4, weight=1)
+
+        # AI Tool Dropdown
+        self.ai_tool_dropdown.grid(row=0, column=0, sticky="nw", padx=10, pady=(10, 0))
+
+        # Folder placeholder
+        self.folder_placeholder.grid(row=1, column=0, sticky="nw", padx=10, pady=(10, 0))
+
+        # Notebook (tabs)
+        self.notebook.grid(row=2, column=0, sticky="nsew", padx=10, pady=10)
+
+        # Control Panel
+        self.control_panel.grid(row=3, column=0, sticky="ew", padx=10, pady=(0, 10))
+
+        # Output Panel
+        self.output_panel.grid(row=4, column=0, sticky="nsew", padx=10, pady=(0, 10))
+
+        # Status Bar
+        self.status_bar.grid(row=5, column=0, sticky="ew", padx=10, pady=(0, 10))
+
+    def enable_process_button(self):
+        current_tab = self.notebook.index(self.notebook.select())
+        if current_tab == 0:  # Single Entry tab
+            prompts = self.single_entry_tab.input_text_prompts.get("1.0", tk.END).strip()
+            results = self.single_entry_tab.input_text_results.get("1.0", tk.END).strip()
+        else:  # Multiple Entry tab
+            prompts = self.multiple_entry_tab.input_text_prompts.get("1.0", tk.END).strip()
+            results = self.multiple_entry_tab.input_text_results.get("1.0", tk.END).strip()
+
+        if prompts and results:
+            self.control_panel.process_button.config(state=tk.NORMAL)
+        else:
+            self.control_panel.process_button.config(state=tk.DISABLED)
+
+        # Force update to ensure changes are visible
+        self.update_idletasks()
+
+    def handle_input(self):
+        try:
+            if not self.selected_folder:
+                self.selected_folder = filedialog.askdirectory(title="Select Output Folder")
+                if not self.selected_folder:
+                    messagebox.showinfo("Info", "Folder selection cancelled. Please select a folder to continue.")
+                    return
+                self.update_folder_display()
+
+            # Get the current tab
+            current_tab = self.notebook.index(self.notebook.select())
+            if current_tab == 0:  # Single Entry tab
+                prompts_text = self.single_entry_tab.input_text_prompts.get("1.0", tk.END).strip()
+                results_text = self.single_entry_tab.input_text_results.get("1.0", tk.END).strip()
+            else:  # Multiple Entry tab
+                prompts_text = self.multiple_entry_tab.input_text_prompts.get("1.0", tk.END).strip()
+                results_text = self.multiple_entry_tab.input_text_results.get("1.0", tk.END).strip()
+
+            # Get the selected AI tool
+            selected_ai_tool = self.ai_tool.get()
+            if selected_ai_tool == "Pick an AI tool":
+                selected_ai_tool = "Not specified"
+
+            # Process the input
+            self.control_panel.progress_bar.start()
+            self.status_bar.config(text="Processing...")
+            self.update_idletasks()
+
+            conversation = utils_process_input(prompts_text, results_text, ['1'], selected_ai_tool)
+            if not conversation:
+                raise ValueError("Failed to process input. Please check your prompts and results.")
+
+            # Generate markdown
+            prompts_markdown = generate_prompts_md(conversation, os.path.basename(self.selected_folder))
+            results_markdown = generate_results_md(conversation, os.path.basename(self.selected_folder))
+
+            # Get unique filenames
+            prompts_filename = get_next_filename("prompts", self.selected_folder)
+            results_filename = get_next_filename("results", self.selected_folder)
+
+            # Save markdown files
+            prompts_file_path, results_file_path = save_markdown_files(
+                prompts_markdown, 
+                results_markdown, 
+                self.selected_folder, 
+                os.path.basename(self.selected_folder),
+                prompts_filename,
+                results_filename
+            )
+
+            self.control_panel.progress_bar.stop()
+            self.status_bar.config(text="Ready")
+
+            # Display success message
+            success_message = f"Markdown files generated successfully.\n"
+            success_message += f"Prompts file: {prompts_file_path}\n"
+            success_message += f"Results file: {results_file_path}\n"
+            messagebox.showinfo("Success", success_message)
+
+            # Update output panel
+            self.output_panel.output_text.config(state=tk.NORMAL)
+            self.output_panel.output_text.delete("1.0", tk.END)
+            self.output_panel.output_text.insert(tk.END, success_message, "success")
+            self.output_panel.output_text.config(state=tk.DISABLED)
+
+        except Exception as e:
+            self.control_panel.progress_bar.stop()
+            self.status_bar.config(text="Error occurred")
+            error_message = f"An error occurred: {str(e)}\n\nError type: {type(e).__name__}"
+            logging.error(f"Error in handle_input: {error_message}", exc_info=True)
+            messagebox.showerror("Error", error_message)
+            
+            # Update output panel with error message
+            self.output_panel.output_text.config(state=tk.NORMAL)
+            self.output_panel.output_text.delete("1.0", tk.END)
+            self.output_panel.output_text.insert(tk.END, error_message, "error")
+            self.output_panel.output_text.config(state=tk.DISABLED)
+
+        finally:
+            self.control_panel.process_button.config(state=tk.DISABLED)
+
+    def update_folder_display(self):
+        if self.selected_folder:
+            folder_name = os.path.basename(self.selected_folder)
+            display_text = f"{folder_name}...>"
+            self.folder_placeholder.config(
+                text=display_text,
+                foreground="green",
+                font=("TkDefaultFont", 10, "bold"),
+                cursor="hand2"
+            )
+            self.folder_placeholder.bind("<Button-1>", self.select_new_folder)
+
+    def select_new_folder(self, event=None):
+        new_folder = filedialog.askdirectory(title="Select Output Folder")
+        if new_folder:
+            self.selected_folder = new_folder
+            self.update_folder_display()
+
+    def create_bindings(self):
+        # Add your bindings here
+        pass  # Remove this 'pass' statement when you add actual bindings
+
+    def toggle_log(self):
+        if self.output_panel.log_frame.winfo_viewable():
+            self.output_panel.log_frame.grid_remove()
+            self.control_panel.toggle_log_button.config(text="Show Log")
+        else:
+            self.output_panel.log_frame.grid()
+            self.control_panel.toggle_log_button.config(text="Hide Log")
 
 if __name__ == "__main__":
     app = MarkdownGeneratorApp()

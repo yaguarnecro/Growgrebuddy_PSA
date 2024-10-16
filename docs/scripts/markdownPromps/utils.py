@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-def parse_prompts(prompts_text):
+def parse_prompts(prompts_text, ai_tool):
     """Parse the prompts text and return a list of dictionaries."""
     prompts = []
     entries = prompts_text.split('\n§§§\n')
@@ -14,7 +14,7 @@ def parse_prompts(prompts_text):
             'description': 'User provided prompt',
             'prompt_id': str(prompt_id),
             'prompt': prompt,
-            'ai_tool': 'Not specified',
+            'ai_tool': ai_tool,
             'date': datetime.now().strftime("%Y-%m-%d"),
             'link_to_result': f'#result-{prompt_id}',
             'error_description': '',
@@ -24,12 +24,12 @@ def parse_prompts(prompts_text):
     
     return prompts
 
-def process_input(prompt, response, identifiers):
+def process_input(prompt, response, identifiers, ai_tool):
     """Process the input data and return a structured format."""
     if not prompt or not response:
         return None  # Prevent further processing if either field is empty
 
-    prompts = parse_prompts(prompt)
+    prompts = parse_prompts(prompt, ai_tool)
     responses = response.split('\n§§§\n')  # Use the same separator for responses
     
     conversation = []

@@ -1,43 +1,58 @@
 # Markdown Generator
 
 ## Description
-Markdown Generator is a simple GUI application that allows users to generate markdown files from prompts and results. It is designed to help users document AI conversations and outputs in a structured format.
+Markdown Generator is a Python-based GUI application that allows users to generate structured markdown files from prompts and responses. It's designed to help users document AI conversations and outputs in a consistent format.
 
 ## Features
-- Input prompts and results through a user-friendly interface.
-- Generate markdown files with structured content.
-- Save markdown files to a user-selected directory.
+- User-friendly graphical interface
+- Support for single and multiple entry modes
+- AI tool selection dropdown
+- Automatic file naming and organization
+- Progress tracking and logging
+- Dark mode interface for reduced eye strain
 
 ## Installation
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/markdown-generator.git
    ```
-2. Navigate to the project directory:
-   ```bash
+   git clone https://github.com/yourusername/markdown-generator.git
    cd markdown-generator
    ```
-3. Install the required packages:
-   ```bash
+2. Install the required dependencies:
+   ```
    pip install -r requirements.txt
    ```
 
 ## Usage
 1. Run the application:
-   ```bash
+   ```
    python main.py
    ```
-2. Input your prompts and results in the respective text areas.
-3. Click the "Process" button to generate markdown files.
-4. Select a directory to save the generated files.
+2. Select an AI tool from the dropdown menu.
+3. Choose between Single Entry or Multiple Entry tabs.
+4. Enter your prompts and responses in the respective text areas.
+5. Click the "Process" button to generate markdown files.
+6. Select an output folder when prompted.
+7. View the generated files in the selected folder.
+
+## File Structure
+- `main.py`: Main application file containing the GUI implementation
+- `utils.py`: Utility functions for processing input and parsing prompts
+- `markdown_generator.py`: Functions for generating markdown content
+- `file_operations.py`: Functions for file handling and naming
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push to your branch and create a pull request.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Make your changes
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin feature/your-feature-name`)
+6. Create a new Pull Request
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+- Thanks to all contributors who have helped shape this project.
+- Inspired by the need for efficient documentation of AI conversations.
 
