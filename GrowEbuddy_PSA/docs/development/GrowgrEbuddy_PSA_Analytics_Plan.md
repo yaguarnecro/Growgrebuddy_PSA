@@ -1,9 +1,9 @@
-# GrowgrEbuddy_PSA Analytics and Reporting Plan
+# GrowgrEbuddy_PSA Analytics Plan
 
 ## 1. Data Collection
 
 ### 1.1 User Data
-- User demographics (age, location, etc.)
+- User demographics (age, location)
 - Registration date and source
 - User preferences and settings
 
@@ -23,22 +23,19 @@
 ### 2.1 User Acquisition
 - Daily/Monthly Active Users (DAU/MAU)
 - User Growth Rate
-- Cost Per Acquisition (CPA)
 
 ### 2.2 User Engagement
 - Average Session Duration
 - Daily Sessions per User
-- Retention Rate (Day 1, Day 7, Day 30)
+- Retention Rate (Day 1, Day 7)
 
 ### 2.3 Monetization
 - Average Revenue Per User (ARPU)
 - Conversion Rate (free to paid)
-- Lifetime Value (LTV)
 
 ### 2.4 App Performance
 - Crash Rate
 - Average Load Time
-- API Latency
 
 ## 3. User Behavior Tracking
 
@@ -49,12 +46,10 @@
 ### 3.2 Feature Usage Analysis
 - Most/least used features
 - Time spent on each feature
-- Feature adoption rate over time
 
 ### 3.3 Challenge and Goal Tracking
 - Types of challenges most completed
 - Average time to complete challenges
-- Goal setting and achievement rates
 
 ## 4. Reporting Dashboards
 
@@ -66,17 +61,10 @@
 ### 4.2 Product Dashboard
 - Feature usage statistics
 - User engagement metrics
-- A/B test results
 
-### 4.3 Marketing Dashboard
-- User acquisition channels
-- Campaign performance metrics
-- Retention cohort analysis
-
-### 4.4 Technical Dashboard
+### 4.3 Technical Dashboard
 - App performance metrics
 - Error rates and types
-- Server load and capacity
 
 ## 5. Data Privacy and Compliance
 
@@ -96,37 +84,25 @@
 
 ### 6.1 Analytics Tools
 - Google Analytics for Firebase: Mobile and web analytics
-- Mixpanel: User behavior analysis
-- Elasticsearch: Log analysis and search
+- Custom event tracking using Django signals
 
 ### 6.2 Data Pipeline
 1. Data Collection: 
-   - Client-side tracking (web and mobile)
+   - Client-side tracking (web)
    - Server-side logging
 2. Data Processing:
-   - Use Apache Kafka for real-time data streaming
-   - Implement data cleaning and transformation using Apache Spark
+   - Use Apache Airflow for data pipeline orchestration
 3. Data Storage:
-   - Store processed data in a data warehouse (e.g., Google BigQuery)
+   - Store processed data in PostgreSQL
 4. Data Visualization:
-   - Use Tableau or Google Data Studio for creating interactive dashboards
+   - Use Metabase for creating interactive dashboards
 
-### 6.3 Real-time Analytics
-- Implement real-time event tracking for critical metrics
-- Use websockets for live updates on dashboards
+## 7. Future Analytics Enhancements
 
-### 6.4 A/B Testing Framework
-- Implement a system for running and analyzing A/B tests
-- Track variant performance and statistical significance
+1. Implement real-time analytics for critical metrics
+2. Develop predictive models for user churn and conversion
+3. Integrate machine learning for personalized content recommendations
+4. Expand data collection to include more granular user interactions
+5. Implement advanced segmentation for targeted marketing campaigns
 
-## 7. Implementation Plan
-
-1. Set up basic analytics tracking (Google Analytics for Firebase)
-2. Implement event tracking for core user actions
-3. Create initial dashboards for key stakeholders
-4. Set up data pipeline for advanced analytics
-5. Implement real-time analytics for critical metrics
-6. Develop and refine custom reports and dashboards
-7. Continuously iterate based on stakeholder feedback and new requirements
-
-This analytics and reporting plan provides a comprehensive framework for tracking, analyzing, and reporting on GrowgrEbuddy_PSA's performance and user behavior. It enables data-driven decision-making and continuous improvement of the app.
+This analytics plan provides a framework for tracking, analyzing, and reporting on GrowgrEbuddy_PSA's performance and user behavior. It focuses on essential metrics for the MVP while outlining areas for future expansion as the app grows.

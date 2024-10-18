@@ -28,12 +28,9 @@
     - [9.1 Platform](#91-platform)
     - [9.2 Frontend](#92-frontend)
     - [9.3 Backend](#93-backend)
-    - [9.4 Databases](#94-databases)
-    - [9.5 Caching](#95-caching)
-    - [9.6 Cloud Platform](#96-cloud-platform)
-    - [9.7 Additional Technologies](#97-additional-technologies)
-    - [9.8 Future Mobile Development](#98-future-mobile-development)
-    - [9.9 Development Considerations](#99-development-considerations)
+    - [9.4 Database](#94-database)
+    - [9.5 Deployment](#95-deployment)
+    - [9.6 Additional Technologies](#96-additional-technologies)
   - [10. Monetization](#10-monetization)
   - [11. Success Metrics](#11-success-metrics)
   - [12. Timeline](#12-timeline)
@@ -46,6 +43,9 @@
     - [14.5 Growth Opportunities](#145-growth-opportunities)
   - [15. Design Guidelines](#15-design-guidelines)
     - [15.1 Visual Style Guide](#151-visual-style-guide)
+      - [Color Palette](#color-palette)
+      - [Typography](#typography)
+      - [Iconography](#iconography)
     - [15.2 UI Components](#152-ui-components)
     - [15.3 Layout Guidelines](#153-layout-guidelines)
     - [15.4 User Experience Principles](#154-user-experience-principles)
@@ -55,6 +55,13 @@
     - [15.8 Gamification Elements](#158-gamification-elements)
     - [15.9 Onboarding Design](#159-onboarding-design)
     - [15.10 Responsive Design Principles](#1510-responsive-design-principles)
+  - [16. Future Enhancements](#16-future-enhancements)
+    - [16.1 Additional Virtual Spaces](#161-additional-virtual-spaces)
+    - [16.2 Expanded Point System](#162-expanded-point-system)
+    - [16.3 More Mini-Games](#163-more-mini-games)
+    - [16.4 Advanced Technical Features](#164-advanced-technical-features)
+    - [16.5 Enhanced Monetization](#165-enhanced-monetization)
+    - [16.6 Advanced Analytics and Reporting](#166-advanced-analytics-and-reporting)
 
 ## 1. Introduction
 
@@ -181,24 +188,17 @@ Users engage with the app through various virtual spaces, each designed to promo
 ### 8.2 Virtual Spaces ⭐
 | Space Name | Purpose | Features |
 |------------|---------|----------|
-| The Cave | Introspection and meditation | - Guided meditation exercises<br>- Mood tracking<br>- Journaling prompts |
-| The Reflections Biome | Nature connection and self-awareness | - Nature sounds and visualizations<br>- Self-reflection exercises<br>- Gratitude practice |
+| The Cave | Introspection and personal growth | - Guided meditation exercises<br>- Mood tracking<br>- Journaling prompts<br>- Self-reflection exercises |
 | Samsara | Life challenges and skill development | - Daily challenges<br>- Skill-building exercises<br>- Progress tracking |
-| The Void | Creativity and personal expression | - Free-form drawing tools<br>- Writing prompts<br>- Music creation mini-games |
 
 ### 8.3 Point System
-Four types of points:
-1. Droops: Earned through daily logins and basic activities
-2. EXP: Gained by completing challenges and exercises
-3. Seeds: Collected through social interactions and community participation
-4. Coins: In-game currency for purchasing customizations and power-ups
+Two types of points:
+1. EXP: Gained by completing challenges, exercises, and daily activities
+2. Coins: In-game currency for purchasing customizations and power-ups
 
 ### 8.4 Mini-Games
 1. Memory Pairs: Match pairs of cards to improve memory and focus
-2. Long List: Memorize and recall lists of items to enhance cognitive skills
-3. Infinite Bite Runner: An endless runner game promoting quick decision-making
-4. Simon Says Breath: Follow breathing patterns to improve mindfulness
-5. Story Making: Create short stories to boost creativity and writing skills
+2. Simon Says Breath: Follow breathing patterns to improve mindfulness
 
 ### 8.5 User Progression ⭐
 - Daily login rewards with increasing value for consecutive days
@@ -253,11 +253,9 @@ Four types of points:
 
 ### 9.1 Platform
 - Web application (responsive design for desktop and mobile browsers)
-- Android mobile application (future development)
 
 ### 9.2 Frontend
-- Framework: Vue.js with TypeScript
-- CSS Preprocessor: Sass
+- Framework: Vue.js with JavaScript
 - Component Library: Vuetify
 
 ### 9.3 Backend
@@ -265,41 +263,18 @@ Four types of points:
 - Framework: Django
 - API: Django REST Framework
 
-### 9.4 Databases
+### 9.4 Database
 - Primary Database: PostgreSQL
-- Secondary Database: MongoDB (for specific use cases requiring schema flexibility)
 
-### 9.5 Caching
-- Redis
+### 9.5 Deployment
+- Platform: Heroku
 
-### 9.6 Cloud Platform
-- Heroku
-
-### 9.7 Additional Technologies
+### 9.6 Additional Technologies
 - Docker for containerization
-- ELK Stack (Elasticsearch, Logstash, Kibana) for logging and monitoring
-- Firebase for push notifications and real-time features
-
-### 9.8 Future Mobile Development
-- Android: Kotlin
-
-### 9.9 Development Considerations
-1. Ensure responsive design for web application to support various screen sizes and devices.
-2. Implement secure authentication and authorization mechanisms.
-3. Design RESTful APIs for communication between frontend and backend.
-4. Utilize PostgreSQL for structured data and MongoDB for flexible schema requirements (e.g., user-generated content, analytics).
-5. Implement caching strategies using Redis to improve application performance.
-6. Set up containerization with Docker to ensure consistent environments across development, testing, and production.
-7. Establish comprehensive logging and monitoring using the ELK Stack.
-8. Integrate Firebase for push notifications and real-time features in both web and future mobile applications.
-9. Plan for future Android app development using Kotlin, ensuring API compatibility and consistent user experience across platforms.
-
-This technical stack provides a robust foundation for building GrowgrEbuddy_PSA, offering a balance of performance, scalability, and developer productivity. It also considers future expansion to mobile platforms and incorporates best practices for modern web application development.
 
 ## 10. Monetization
-
-- Primarily free with ads
-- Mixed model inspired by Chinese "super apps"
+- Free app with optional in-app purchases for cosmetic items and power-ups
+- No ads in the initial version to focus on user experience
 
 ## 11. Success Metrics
 
@@ -490,3 +465,36 @@ Utilize Vuetify components for consistency and efficiency. Key components includ
 4. Adaptive Content: Adjust content display and hierarchy based on screen size and orientation
 
 These design guidelines provide a comprehensive framework for creating a consistent, accessible, and engaging user experience for GrowgrEbuddy_PSA. They should be used in conjunction with the Vuetify component library to ensure a cohesive design across the application.
+
+## 16. Future Enhancements
+
+This section outlines potential future features and enhancements that could be added to GrowgrEbuddy_PSA as the project evolves:
+
+### 16.1 Additional Virtual Spaces
+- The Reflections Biome: For nature connection and self-awareness
+- The Void: For creativity and personal expression
+
+### 16.2 Expanded Point System
+- Introduce Seeds for social interactions and community participation
+- Add Droops for daily logins and basic activities
+
+### 16.3 More Mini-Games
+- Long List: Memorize and recall lists of items to enhance cognitive skills
+- Infinite Bite Runner: An endless runner game promoting quick decision-making
+- Story Making: Create short stories to boost creativity and writing skills
+
+### 16.4 Advanced Technical Features
+- Implement caching with Redis for improved performance
+- Integrate MongoDB for flexible data storage needs
+- Add real-time features using Firebase
+- Develop native mobile applications for iOS and Android
+
+### 16.5 Enhanced Monetization
+- Implement a subscription model with premium features
+- Introduce in-app advertising for free users
+
+### 16.6 Advanced Analytics and Reporting
+- Implement comprehensive user behavior tracking
+- Develop detailed performance metrics and KPIs
+
+These future enhancements provide a roadmap for expanding GrowgrEbuddy_PSA's features and capabilities as the project grows and evolves beyond its initial MVP stage.
