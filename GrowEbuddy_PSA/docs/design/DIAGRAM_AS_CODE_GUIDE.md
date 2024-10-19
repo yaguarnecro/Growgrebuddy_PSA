@@ -11,6 +11,7 @@ We use Mermaid for flowcharts and information architecture diagrams.
 Mermaid is a JavaScript-based diagramming tool. For local rendering, you can use the Mermaid CLI:
 
 ```bash
+npm i mermaid 
 npm install -g @mermaid-js/mermaid-cli
 ```
 ### Usage
@@ -31,6 +32,7 @@ Create Mermaid diagrams in Markdown files using the following syntax:
 To render a Mermaid diagram to an image:
 
 ```bash
+mmdc -i input.mmd -o output.png
 mmdc -i input.mmd -o output.svg
 ```
 ### Integration with IDEs
