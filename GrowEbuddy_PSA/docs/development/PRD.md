@@ -1,7 +1,7 @@
-# Product Requirements Document (PRD) for GrowgrEbuddy_PSA
+# Product Requirements Document (PRD) for GrowthBuddy P.S.A.
 
 ## Table of Contents
-- [Product Requirements Document (PRD) for GrowgrEbuddy\_PSA](#product-requirements-document-prd-for-growgrebuddy_psa)
+- [Product Requirements Document (PRD) for GrowthBuddy P.S.A.](#product-requirements-document-prd-for-growthbuddy-psa)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
   - [2. Game Concept](#2-game-concept)
@@ -65,11 +65,11 @@
 
 ## 1. Introduction
 
-GrowgrEbuddy_PSA is a gamified personal development application that combines elements of virtual pet care, habit tracking, and mental wellness to help users improve their overall well-being.
+GrowthBuddy P.S.A. is a gamified personal development application that combines elements of virtual pet care, habit tracking, and mental wellness to help users improve their overall well-being. The initials "P.S.A." stand for both "Personal Support Assistant" and "Play, System, App," reflecting the project's multifaceted approach to personal growth and development.
 
 ## 2. Game Concept
 
-GrowgrEbuddy_PSA is a mobile app that gamifies personal growth and development. Users nurture a virtual mascot that represents their inner self, evolving and growing as they engage in various activities and challenges. The app combines elements of:
+GrowthBuddy P.S.A. is a mobile app that gamifies personal growth and development. Users nurture a virtual mascot that represents their inner self, evolving and growing as they engage in various activities and challenges. The app combines elements of:
 
 - Virtual pet care: Users care for their mascot, which responds to their actions and progress.
 - Habit tracking: Daily tasks and challenges encourage users to form positive habits.
@@ -80,7 +80,7 @@ The app is designed to be engaging, visually appealing, and easy to use, with a 
 
 ## 3. Objectives
 
-The primary objectives of GrowgrEbuddy_PSA are:
+The primary objectives of GrowthBuddy P.S.A. are:
 
 1. To encourage users to engage in daily personal development activities.
 2. To promote mental wellness through guided exercises and reflection.
@@ -278,7 +278,7 @@ Two types of points:
 
 ## 11. Success Metrics
 
-See GrowgrEbuddy_PSA_Success_Metrics.md for detailed success metrics and KPIs.
+See GrowthBuddy_PSA_Success_Metrics.md for detailed success metrics and KPIs.
 
 ## 12. Timeline
 
@@ -286,7 +286,7 @@ See Plan_Development_Roadmap.md for the detailed project timeline and milestones
 
 ## 13. Risks and Mitigation Strategies
 
-See GrowgrEbuddy_PSA_Risk_Assessment.md for a comprehensive risk assessment and mitigation plan.
+See GrowthBuddy_PSA_Risk_Assessment.md for a comprehensive risk assessment and mitigation plan.
 
 ## 14. Market Analysis
 
@@ -330,7 +330,7 @@ See GrowgrEbuddy_PSA_Risk_Assessment.md for a comprehensive risk assessment and 
 
 ### 14.2 Unique Selling Points (USPs)
 
-1. Holistic Approach: GrowgrEbuddy_PSA combines personal development, mental wellness, and gamification in a single app.
+1. Holistic Approach: GrowthBuddy P.S.A. combines personal development, mental wellness, and gamification in a single app.
 2. Evolving Mascot: The virtual pet concept provides a tangible representation of personal growth.
 3. Multi-faceted Growth: Four key areas (mood, awareness, energy, constitution) offer a comprehensive development experience.
 4. Diverse Virtual Spaces: Different environments cater to various aspects of personal growth and user preferences.
@@ -338,7 +338,7 @@ See GrowgrEbuddy_PSA_Risk_Assessment.md for a comprehensive risk assessment and 
 
 ### 14.3 Market Positioning
 
-GrowgrEbuddy_PSA positions itself as a comprehensive personal development companion that makes self-improvement engaging and rewarding. Our target market includes:
+GrowthBuddy P.S.A. positions itself as a comprehensive personal development companion that makes self-improvement engaging and rewarding. Our target market includes:
 
 1. Primary: Young adults (18-35) seeking a fun, gamified approach to personal growth
 2. Secondary: Transgenerational users interested in holistic self-improvement
@@ -367,7 +367,7 @@ We differentiate ourselves by offering:
 4. Development of educational resources and workshops based on app principles
 5. Creation of a premium subscription tier with advanced features and personalized coaching
 
-This market analysis provides insights into the competitive landscape, highlights our unique selling points, and identifies potential growth opportunities for GrowgrEbuddy_PSA.
+This market analysis provides insights into the competitive landscape, highlights our unique selling points, and identifies potential growth opportunities for GrowthBuddy P.S.A.
 
 ## 15. Design Guidelines
 
@@ -464,11 +464,11 @@ Utilize Vuetify components for consistency and efficiency. Key components includ
 3. Touchable Elements: Ensure interactive elements are large enough for touch interactions (minimum 44x44 pixels)
 4. Adaptive Content: Adjust content display and hierarchy based on screen size and orientation
 
-These design guidelines provide a comprehensive framework for creating a consistent, accessible, and engaging user experience for GrowgrEbuddy_PSA. They should be used in conjunction with the Vuetify component library to ensure a cohesive design across the application.
+These design guidelines provide a comprehensive framework for creating a consistent, accessible, and engaging user experience for GrowthBuddy P.S.A. They should be used in conjunction with the Vuetify component library to ensure a cohesive design across the application.
 
 ## 16. Future Enhancements
 
-This section outlines potential future features and enhancements that could be added to GrowgrEbuddy_PSA as the project evolves:
+This section outlines potential future features and enhancements that could be added to GrowthBuddy P.S.A. as the project evolves:
 
 ### 16.1 Additional Virtual Spaces
 - The Reflections Biome: For nature connection and self-awareness
@@ -497,4 +497,4 @@ This section outlines potential future features and enhancements that could be a
 - Implement comprehensive user behavior tracking
 - Develop detailed performance metrics and KPIs
 
-These future enhancements provide a roadmap for expanding GrowgrEbuddy_PSA's features and capabilities as the project grows and evolves beyond its initial MVP stage.
+These future enhancements provide a roadmap for expanding GrowthBuddy P.S.A.'s features and capabilities as the project grows and evolves beyond its initial MVP stage.

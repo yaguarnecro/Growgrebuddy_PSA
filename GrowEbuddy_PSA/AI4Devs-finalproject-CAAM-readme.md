@@ -22,7 +22,7 @@ GrowgrEbuddy_PSA
 GrowgrEbuddy_PSA is a gamified personal development application that combines elements of virtual pet care, habit tracking, and mental wellness to help users improve their overall well-being.
 
 ### 1.4 Project URL
-[Insert project URL here]
+[GrowgrEbuddy Play Systeme App](https://github.com/yaguarnecro/Growgrebuddy_PSA)
 
 ### 1.5 Repository URL or Compressed File
 [Insert repository URL or instructions for accessing the repository]

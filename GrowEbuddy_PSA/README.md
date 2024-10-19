@@ -1,24 +1,25 @@
-# GrowthBuddy.P.S.A. - A Mental Wellness Companion
+# GrowthBuddy P.S.A. - A Mental Wellness Companion
+
+The initials "P.S.A." stand for both "Personal Support Assistant" and "Play, System, App," reflecting the project's multifaceted approach to personal growth and development.
+
+1. **Personal Support Assistant**: Reflecting the app's primary function as a tool for enhancing mental well-being and providing personalized support.
+2. **Play, System, App**: Emphasizing the application's playful nature, systematic approach to personal development, and its format as a mobile/web application.
 
 ## Overview
 
-**GrowthBuddy.P.S.A.** is a web/mobile application designed to promote mental well-being and personal development through gamified experiences and a virtual pet companion. It targets individuals seeking a fun and engaging way to improve their mood, self-awareness, and overall emotional health.
+**GrowthBuddy P.S.A.** is a web application designed to promote mental well-being and personal development through gamified experiences and a virtual pet companion. It targets individuals seeking a fun and engaging way to improve their mood, self-awareness, and overall emotional health.
 
 ## Core Features
 
-- **Virtual Pet Companion**: A dynamic sphere that evolves based on user interactions and reflects their emotional state.
-- **Gamified Activities**: A variety of mini-games categorized into four key areas:
-  - **Consciousness**: Memory, concentration, and breathing exercises.
-  - **Energy**: Obstacle courses, running games, and challenges.
-  - **Mood**: Story creation, creative expression, and relaxation activities.
-  - **Constitution**: Habit tracking, task management, and goal setting.
-- **Personalized Spaces**: Four distinct virtual environments, each with its own thematic focus and activities:
+- **Virtual Mascot**: A dynamic sphere that evolves based on user interactions and reflects their emotional state.
+- **Virtual Spaces**: Two distinct environments for different aspects of personal growth:
   - **The Cave**: Focuses on introspection and meditation.
-  - **The Reflections Biome**: Encourages connection with nature.
   - **Samsara**: Represents the cycle of life with challenges and rewards.
-  - **The Void**: Fosters creativity and imagination.
-- **Points and Rewards**: Users earn points for completing activities and challenges, which contribute to their pet's evolution and unlock new features.
-- **Customization Options**: Users can personalize their virtual spaces and pet companion to their preferences.
+- **Point System**: Users earn EXP and Coins for completing activities and challenges.
+- **Mini-Games**: 
+  - Memory Pairs: Improve memory and focus.
+  - Simon Says Breath: Enhance mindfulness through breathing exercises.
+- **User Progression**: Level system, achievements, and customization options.
 
 ## Project Status
 
@@ -31,15 +32,19 @@ The project is currently in the design phase. We have established the core funct
 
 ## Technologies
 
-*To be filled later*: This section will specify the programming languages, frameworks, and tools used to build the application.
+- Frontend: Vue.js with JavaScript, Vuetify component library
+- Backend: Python with Django and Django REST Framework
+- Database: PostgreSQL
+- Deployment: Heroku
+- Containerization: Docker
 
 ## Contributing
 
-*To be filled later*: If you're interested in contributing to this project, this section will provide details on how to get involved, including coding guidelines, testing procedures, and communication channels.
+Please refer to our CONTRIBUTING.md file for information on how to contribute to this project.
 
 ## License
 
-*To be filled later*: This section will specify the open-source license under which the project code will be released.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
 
