@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+		<script type="text/javascript">
+			window.tailwind.config = {
+				darkMode: ['class'],
+				theme: {
+					extend: {
+						colors: {
+							border: 'hsl(var(--border))',
+							input: 'hsl(var(--input))',
+							ring: 'hsl(var(--ring))',
+							background: 'hsl(var(--background))',
+							foreground: 'hsl(var(--foreground))',
+							primary: {
+								DEFAULT: 'hsl(var(--primary))',
+								foreground: 'hsl(var(--primary-foreground))'
+							},
+							secondary: {
+								DEFAULT: 'hsl(var(--secondary))',
+								foreground: 'hsl(var(--secondary-foreground))'
+							},
+							destructive: {
+								DEFAULT: 'hsl(var(--destructive))',
+								foreground: 'hsl(var(--destructive-foreground))'
+							},
+							muted: {
+								DEFAULT: 'hsl(var(--muted))',
+								foreground: 'hsl(var(--muted-foreground))'
+							},
+							accent: {
+								DEFAULT: 'hsl(var(--accent))',
+								foreground: 'hsl(var(--accent-foreground))'
+							},
+							popover: {
+								DEFAULT: 'hsl(var(--popover))',
+								foreground: 'hsl(var(--popover-foreground))'
+							},
+							card: {
+								DEFAULT: 'hsl(var(--card))',
+								foreground: 'hsl(var(--card-foreground))'
+							},
+						},
+					}
+				}
+			}
+		</script>
+		<style type="text/tailwindcss">
+			@layer base {
+				:root {
+					--background: 0 0% 100%;
+--foreground: 222.2 84% 4.9%;
+--card: 0 0% 100%;
+--card-foreground: 222.2 84% 4.9%;
+--popover: 0 0% 100%;
+--popover-foreground: 222.2 84% 4.9%;
+--primary: 221.2 83.2% 53.3%;
+--primary-foreground: 210 40% 98%;
+--secondary: 210 40% 96.1%;
+--secondary-foreground: 222.2 47.4% 11.2%;
+--muted: 210 40% 96.1%;
+--muted-foreground: 215.4 16.3% 46.9%;
+--accent: 210 40% 96.1%;
+--accent-foreground: 222.2 47.4% 11.2%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 210 40% 98%;
+--border: 214.3 31.8% 91.4%;
+--input: 214.3 31.8% 91.4%;
+--ring: 221.2 83.2% 53.3%;
+				}
+				.dark {
+					--background: 222.2 84% 4.9%;
+--foreground: 210 40% 98%;
+--card: 222.2 84% 4.9%;
+--card-foreground: 210 40% 98%;
+--popover: 222.2 84% 4.9%;
+--popover-foreground: 210 40% 98%;
+--primary: 217.2 91.2% 59.8%;
+--primary-foreground: 222.2 47.4% 11.2%;
+--secondary: 217.2 32.6% 17.5%;
+--secondary-foreground: 210 40% 98%;
+--muted: 217.2 32.6% 17.5%;
+--muted-foreground: 215 20.2% 65.1%;
+--accent: 217.2 32.6% 17.5%;
+--accent-foreground: 210 40% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 210 40% 98%;
+--border: 217.2 32.6% 17.5%;
+--input: 217.2 32.6% 17.5%;
+--ring: 224.3 76.3% 48%;
+				}
+			}
+		</style>
+  </head>
+  <body>
+    <div class="bg-background text-foreground p-6">
+    <header class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold">The Cave</h1>
+        <div class="flex items-center">
+            <span class="mr-2">Your Pet</span>
+            <img src="https://placehold.co/50?text=🐾" alt="pet-icon" class="w-10 h-10 rounded-full" crossorigin="anonymous">
+        </div>
+    </header>
+    
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4">
+        <h2 class="text-2xl font-semibold">Mood & Energy Tracker</h2>
+        <p class="text-muted-foreground">Track your pet's mood and energy level</p>
+        <div class="flex items-center mt-4">
+            <div class="flex items-center">
+                <span class="mr-2">Mood:</span>
+                <input type="range" min="1" max="5" class="slider w-32">
+            </div>
+            <div class="flex items-center ml-6">
+                <span class="mr-2">Energy:</span>
+                <input type="range" min="1" max="5" class="slider w-32">
+            </div>
+        </div>
+        <button class="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 p-2 rounded">Save</button>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4">
+        <h3 class="text-xl font-semibold">Pet Actions</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Feed</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Pet</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Workout</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Travel</button>
+        </div>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4">
+        <h3 class="text-xl font-semibold">Pet Needs</h3>
+        <p class="text-muted-foreground">Learn about your pet's emotional state and how to address their needs.</p>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4">
+        <h3 class="text-xl font-semibold">Task Progress</h3>
+        <p class="text-muted-foreground">Pending Tasks: 3 | Completed Tasks: 5</p>
+        <h4 class="font-semibold mt-4">Task List</h4>
+        <ul class="list-disc pl-5">
+            <li class="flex justify-between">
+                <span class="text-muted-foreground">Walk the dog</span>
+                <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+            </li>
+            <li class="flex justify-between">
+                <span class="text-muted-foreground">Vet appointment</span>
+                <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+            </li>
+            <li class="flex justify-between">
+                <span class="text-muted-foreground">Buy pet food</span>
+                <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+            </li>
+        </ul>
+        <div class="mt-4">
+            <h4 class="font-semibold">Task Completion</h4>
+            <div class="bg-muted h-2 rounded w-full mt-2">
+                <div class="bg-primary h-2 rounded" style="width: 60%;"></div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4">
+        <h3 class="text-xl font-semibold">Add New Task</h3>
+        <div class="flex flex-col md:flex-row items-center mt-4">
+            <input type="text" placeholder="Task Name" class="border border-border p-2 rounded mb-2 md:mb-0 md:mr-2">
+            <input type="text" placeholder="Description" class="border border-border p-2 rounded mb-2 md:mb-0 md:mr-2">
+            <button class="bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded">Create Task</button>
+        </div>
+    </section>
+</div>
+
+<div class="bg-background text-foreground p-6">
+    <header class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold">The Cave</h1>
+        <div class="flex items-center">
+            <span class="mr-2">Your Pet</span>
+            <img src="https://placehold.co/50?text=🐾" alt="pet-icon" class="w-10 h-10 rounded-full" crossorigin="anonymous">
+        </div>
+    </header>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--popover);">
+        <h2 class="text-2xl font-semibold">Check-in - Mood &amp; Energy Tracker</h2>
+        <p class="text-muted-foreground">Track your pet's mood and energy level</p>
+        <div class="flex items-center mt-4">
+            <div class="flex items-center">
+                <span class="mr-2">Mood:</span>
+                <input type="range" min="1" max="5" class="slider">
+            </div>
+            <div class="flex items-center ml-6">
+                <span class="mr-2">Energy:</span>
+                <input type="range" min="1" max="5" class="slider">
+            </div>
+        </div>
+        <button class="bg-primary text-primary-foreground hover:bg-primary/80 mt-4 p-2 rounded">Save</button>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--card);">
+        <h3 class="text-xl font-semibold">Pet Actions</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Feed</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Pet</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Workout</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">Travel</button>
+        </div>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--primary);">
+        <h3 class="text-xl font-semibold">Pet Needs</h3>
+        <div class="bg-card p-4 rounded mt-2">
+            <p class="text-muted-foreground">Pet Connection Thoughts: Learn about your pet's emotional state and how to address their needs.</p>
+            <p class="text-muted-foreground mt-2">Pet Age in Human Years: A pet's age can be calculated to understand their maturity level.</p>
+        </div>
+    </section>
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--secondary);">
+        <h3 class="text-xl font-semibold">Task Progress</h3>
+        <div class="mt-4">
+            <p class="text-muted-foreground">Pending Tasks: 3</p>
+            <p class="text-muted-foreground">Completed Tasks: 5</p>
+        </div>
+        <div class="mt-4">
+            <h4 class="font-semibold">Task List</h4>
+            <ul class="list-disc pl-5">
+                <li class="flex justify-between">
+                    <span class="text-muted-foreground">Walk the dog</span>
+                    <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+                </li>
+                <li class="flex justify-between">
+                    <span class="text-muted-foreground">Vet appointment</span>
+                    <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+                </li>
+                <li class="flex justify-between">
+                    <span class="text-muted-foreground">Buy pet food</span>
+                    <button class="bg-secondary text-secondary-foreground p-1 rounded">Complete</button>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-4">
+            <h4 class="font-semibold">Task Completion</h4>
+            <div class="bg-muted h-2 rounded w-full mt-2">
+                <div class="bg-primary h-2 rounded" style="width: 60%;"></div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="mb-8 bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--popover);">
+        <h3 class="text-xl font-semibold">Quick Access Templates</h3>
+        <div class="flex flex-wrap gap-2 mt-4">
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">+ Dream</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">+ Note</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">+ Idea</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">+ Task</button>
+            <button class="bg-secondary text-secondary-foreground p-2 rounded">+ Brain Dump</button>
+        </div>
+    </section>
+    <section class="bg-popover bg-opacity-70 backdrop-blur-lg rounded p-4" style="background-color: var(--popover-foreground);">
+        <h3 class="text-xl font-semibold">Add New Task</h3>
+        <div class="flex flex-col md:flex-row items-center mt-4">
+            <input type="text" placeholder="Task Name" class="border border-border p-2 rounded mb-2 md:mb-0 md:mr-2">
+            <input type="text" placeholder="Description" class="border border-border p-2 rounded mb-2 md:mb-0 md:mr-2">
+            <button class="bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded">Create Task</button>
+        </div>
+    </section>
+</div>
+
+  </body>
+</html>

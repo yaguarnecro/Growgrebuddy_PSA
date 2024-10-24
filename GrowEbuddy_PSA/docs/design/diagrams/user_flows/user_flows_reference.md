@@ -6,7 +6,7 @@ This document provides a comprehensive reference for all user flows in the GrowE
 
 This flow illustrates the process of a new user registering for the app and going through the onboarding process.
 
-![User Registration and Onboarding Flow](./user_registration_onboarding_flow.png "User Registration and Onboarding Flow")
+![User Registration and Onboarding Flow](/user_registration_onboarding_flow.png "User Registration and Onboarding Flow")
 
 **Key Steps:**
 1. User lands on the app's landing page
@@ -21,7 +21,7 @@ This flow illustrates the process of a new user registering for the app and goin
 
 This flow shows the daily engagement process, including mood tracking and interactions with the virtual mascot.
 
-![Daily Check-in and Mascot Interaction Flow](./daily_checkin_mascot_interaction_flow.png "Daily Check-in and Mascot Interaction Flow")
+![Daily Check-in and Mascot Interaction Flow](daily_checkin_mascot_interaction_flow.png "Daily Check-in and Mascot Interaction Flow")
 
 **Key Steps:**
 1. User starts at the main dashboard
