@@ -22,10 +22,10 @@ GrowgrEbuddy_PSA
 GrowgrEbuddy_PSA is a gamified personal development application that combines elements of virtual pet care, habit tracking, and mental wellness to help users improve their overall well-being.
 
 ### 1.4 Project URL
-[GrowgrEbuddy Play Systeme App](https://github.com/yaguarnecro/Growgrebuddy_PSA)
+www.growgrebuddy.com?
 
 ### 1.5 Repository URL or Compressed File
-[Insert repository URL or instructions for accessing the repository]
+[GrowgrEbuddy Play Systeme App](https://github.com/yaguarnecro/Growgrebuddy_PSA)
 
 ## 2. Product Description
 
@@ -38,9 +38,9 @@ The primary objectives of GrowgrEbuddy_PSA are:
 5. To create a supportive community of users working towards self-improvement.
 
 ### 2.2 Main Features and Functionalities
-1. Virtual Mascot: Evolves based on user progress and interactions
+**1. Virtual Mascot: Evolves based on user progress and interactions
 2. Virtual Spaces: "The Cave" for introspection and "Samsara" for life challenges
-3. Point System: EXP for progress and Coins for in-app purchases
+3. Point System: EXP for progress and Coins for in-app purchases**
 4. Mini-Games: Memory Pairs and Simon Says Breath
 5. User Progression System: Levels, achievements, and customization options
 6. Daily Challenges and Habit Tracking
