@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import hello_world, hello_world_api  # Import both views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('hello/', hello_world),  # Existing view for "Hello World" (HTML response)
+    path('api/hello/', hello_world_api),  # New API endpoint for "Hello World" (JSON response)
 ]
