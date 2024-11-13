@@ -12,27 +12,35 @@
   - Set up version control with Git and GitHub
   - Configure initial CI/CD pipeline using GitHub Actions
 
-### Ticket DEV-002: Implement Virtual Mascot
-- **Description:** Develop the core virtual mascot feature.
+### Ticket DEV-002: Implement Frontend "Hello World"
+- **Description:** Create a basic Vue.js application that displays "Hello World".
 - **Priority:** High
 - **Assignee:** Frontend Developer
 - **Acceptance Criteria:**
-  - Create basic mascot design with emoticon-based expressions
-  - Implement mascot evolution based on user progress
-  - Develop mascot interaction animations and sounds
+  - Set up a new Vue.js project
+  - Create a component that renders "Hello World"
+  - Ensure the application runs locally
 
-### Ticket DEV-003: Develop Point System
-- **Description:** Implement the EXP and Coins system.
+### Ticket DEV-003: Implement Backend "Hello World"
+- **Description:** Set up a Django server that responds with "Hello World".
+- **Priority:** High
+- **Assignee:** Backend Developer
+- **Acceptance Criteria:**
+  - Create a new Django project
+  - Set up a view that returns "Hello World"
+  - Ensure the server runs locally and responds correctly
+
+### Ticket DEV-004: Implement API "Hello World"
+- **Description:** Create a RESTful API endpoint that returns "Hello World".
 - **Priority:** High
 - **Assignee:** Full-stack Developer
 - **Acceptance Criteria:**
-  - Create backend logic for earning and spending points
-  - Develop frontend UI for displaying user points
-  - Implement point transactions for completing activities and purchasing items
+  - Create an API endpoint in Django that returns a JSON response with "Hello World"
+  - Test the endpoint using Postman or similar tool
 
 ## User Management
 
-### Ticket DEV-004: User Authentication
+### Ticket DEV-005: User Authentication
 - **Description:** Implement user registration and login functionality.
 - **Priority:** High
 - **Assignee:** Backend Developer
@@ -41,7 +49,7 @@
   - Implement secure login system
   - Create password reset functionality
 
-### Ticket DEV-005: User Profile Management
+### Ticket DEV-006: User Profile Management
 - **Description:** Create user profile functionality.
 - **Priority:** Medium
 - **Assignee:** Full-stack Developer
@@ -52,7 +60,7 @@
 
 ## Game Features
 
-### Ticket DEV-006: Implement Virtual Spaces
+### Ticket DEV-007: Implement Virtual Spaces
 - **Description:** Develop "The Cave" and "Samsara" virtual spaces.
 - **Priority:** High
 - **Assignee:** Frontend Developer
@@ -61,7 +69,7 @@
   - Implement navigation between spaces
   - Develop basic interactions within each space
 
-### Ticket DEV-007: Develop Mini-Games
+### Ticket DEV-008: Develop Mini-Games
 - **Description:** Create "Memory Pairs" and "Simon Says Breath" mini-games.
 - **Priority:** Medium
 - **Assignee:** Frontend Developer
