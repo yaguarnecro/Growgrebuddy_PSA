@@ -1,0 +1,9 @@
+graph TD;
+    A[User Interface (Vue.js)] -->|API Calls| B[Backend (Django REST Framework)];
+    B -->|CRUD Operations| C[Database (PostgreSQL)];
+    B -->|Caching| D[Cache (Redis/Memcached)];
+    B -->|Monitoring| E[Monitoring Tools (Prometheus/Grafana)];
+    B -->|Logging| F[Logging System];
+    B -->|Authentication| G[Auth Service (OAuth 2.0)];
+    B -->|Containerization| H[Docker];
+    H -->|Deployment| I[Heroku];

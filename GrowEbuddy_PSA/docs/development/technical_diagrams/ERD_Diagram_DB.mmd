@@ -1,0 +1,41 @@
+erDiagram
+    USER {
+        INT user_id PK "Unique identifier for the user"
+        STRING username "The user's chosen name"
+        STRING email "The user's email address"
+        STRING password_hash "Hashed password for authentication"
+        TIMESTAMP created_at "Timestamp of account creation"
+    }
+
+    VPET {
+        INT vpet_id PK "Unique identifier for the virtual pet"
+        INT user_id FK "Foreign key referencing the User entity"
+        INT level "Current level of the virtual pet"
+        INT experience_points "Points accumulated by the virtual pet"
+        STRING mood "Current mood state of the virtual pet"
+        TIMESTAMP created_at "Timestamp of Vpet creation"
+    }
+
+    NOTE {
+        INT note_id PK "Unique identifier for the note"
+        INT user_id FK "Foreign key referencing the User entity"
+        STRING title "Title of the note"
+        TEXT content "Content of the note"
+        TIMESTAMP created_at "Timestamp of note creation"
+    }
+
+    CHALLENGE {
+        INT challenge_id PK "Unique identifier for the challenge"
+        INT user_id FK "Foreign key referencing the User entity"
+        TEXT description "Description of the challenge"
+        INT points_reward "Points awarded upon completion"
+        BOOLEAN is_completed "Indicates if the challenge has been completed"
+        TIMESTAMP created_at "Timestamp of challenge creation"
+    }
+
+    USER ||--o{ VPET : has
+    USER ||--o{ NOTE : creates
+    USER ||--o{ CHALLENGE : creates
+    VPET }o--|| USER : belongs_to
+    NOTE }o--|| USER : belongs_to
+    CHALLENGE }o--|| USER : belongs_to

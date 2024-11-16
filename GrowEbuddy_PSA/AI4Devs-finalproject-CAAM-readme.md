@@ -15,35 +15,35 @@
 ### 1.1 Your Full Name
 Carlos Arturo Araque Montoya
 
-### 1.2 Project Name
+### 1.1.2 Project Name
 GrowgrEbuddy_PSA
 
-### 1.3 Brief Project Description
+### 1.1.3 Brief Project Description
 GrowgrEbuddy_PSA is a gamified personal development application that combines elements of virtual pet care, habit tracking, and mental wellness to help users improve their overall well-being.
 
-### 1.3.1 Project Scope
+### 1.1.4 Project Scope
 The current project scope focuses on implementing the following key features:
 
 - **Virtual Mascot**: A dynamic mascot that evolves based on user progress and interactions.
 - **Virtual Spaces**: Interactive environments like "The Cave" for introspection and "Samsara" for life challenges.
 - **User Progression**: A system that rewards users with daily login bonuses, streaks, and achievements.
 
-### 1.4 Project URL
+### 1.1.5 Project URL
 www.growgrebuddy.com?
 
-### 1.5 Repository URL or Compressed File
+### 1.1.6 Repository URL or Compressed File
 [GrowgrEbuddy Play Systeme App](https://github.com/yaguarnecro/Growgrebuddy_PSA)
 
-## 2. Product Description
+## 1.2. Product Description
 
-### 2.1 Objective
+### 1.2.1 Objective
 The primary objectives of GrowgrEbuddy_PSA are:
 1. To encourage users to engage in daily personal development activities.
 2. To promote mental wellness through guided exercises and reflection.
 3. To foster habit formation through gamification and rewards.
 4. To provide a sense of progress and achievement in personal growth.
 
-### 2.2 Main Features and Functionalities
+### 1.2.2 Main Features and Functionalities
 
 #### MVP Features
 1. **Virtual Mascot**: Evolves based on user progress and interactions.
@@ -56,7 +56,7 @@ The primary objectives of GrowgrEbuddy_PSA are:
 1. **Mini-Games**: Memory Pairs and Simon Says Breath.
 2. **Mood Tracking and Guided Meditations**: Supports mental wellness through reflection and mindfulness exercises.
 
-### 2.3 Design and User Experience
+### 1.3. Design and User Experience
 The design of GrowgrEbuddy_PSA focuses on creating an engaging and intuitive user experience. Key design principles include:
 
 - **Simplicity**: A clean and minimalist interface that is easy to navigate.
@@ -66,9 +66,9 @@ The design of GrowgrEbuddy_PSA focuses on creating an engaging and intuitive use
 - **Visual Style Guide**: Consistent use of color palette and typography to maintain a cohesive look.
 - **Responsive Design**: Mobile-first approach with a responsive grid system for various devices.
 
-[Insert screenshots, wireframes, or links to video tutorials showcasing the user experience]
+*[Insert screenshots, wireframes, or links to video tutorials showcasing the user experience]*
 
-### 2.4 Installation Instructions
+### 1.4. Installation Instructions
 
 To set up the GrowgrEbuddy_PSA project locally, follow these steps:
 
@@ -86,9 +86,9 @@ Open your terminal and run the following command to clone the repository:
 git clone https://github.com/yaguarnecro/Growgrebuddy_PSA
 ```
 
-## 3. System Architecture
+## 2. System Architecture
 
-### 3.1 Architecture Diagram
+### 2.1 Architecture Diagram
 The architecture of GrowgrEbuddy_PSA consists of the following components:
 
 - **Frontend**: Built with Vue.js and Vuetify, providing a responsive user interface.
@@ -97,7 +97,7 @@ The architecture of GrowgrEbuddy_PSA consists of the following components:
 - **Deployment**: The application is hosted on Heroku, allowing for easy scaling and management.
 - **Containerization**: Docker is utilized to ensure consistent environments across development, testing, and production.
 
-![Architecture Diagram](path/to/your/architecture_diagram.png)  <!-- Replace with the actual path to your diagram -->
+![Architecture Diagram](GrowEbuddy_PSA\docs\design\diagrams\information_architecture\architecture_diagram.mmd)  <!-- Replace with the actual path to your diagram -->
 
 +-------------------+          +-------------------+
 |                   |          |                   |
@@ -125,15 +125,15 @@ The architecture of GrowgrEbuddy_PSA consists of the following components:
 |                   |          |                   |
 +-------------------+          +-------------------+
 
-### 3.2 Main Components Description
-- **Frontend**: 
-  - **Vue.js with JavaScript**: A progressive JavaScript framework for building user interfaces, allowing for a reactive and dynamic user experience.
-  - **Vuetify**: A Material Design component framework for Vue.js, providing pre-built accessible components that speed up development.
+
+### 2.2 Architectural Components
 
 - **Backend**: 
   - **Python**: A versatile programming language that is easy to learn and use.
   - **Django**: A high-level Python web framework that provides a robust foundation for building web applications, ensuring rapid development and clean design.
   - **Django REST Framework**: A powerful toolkit for building Web APIs, enabling seamless communication between the frontend and backend.
+  - **Caching**: 
+    - Implement a caching layer (e.g., Redis or Memcached) to store frequently accessed data such as user profiles, Vpet states, and notes. This will reduce the load on the database and improve response times.
 
 - **Database**: 
   - **PostgreSQL**: A powerful, open-source relational database management system that ensures data integrity and supports complex queries.
@@ -144,9 +144,13 @@ The architecture of GrowgrEbuddy_PSA consists of the following components:
 - **Containerization**: 
   - **Docker**: A tool designed to make it easier to create, deploy, and run applications by using containers, ensuring consistent environments across development, testing, and production.
 
+- **Purpose**: Serves as the core logic layer, handling API requests and business logic.
+  - **Features**:
+     - API endpoints for creating, updating, and managing notes and challenges.
+     - Logic for updating Vpet states based on user interactions and time elapsed.
+     - Secure user authentication and authorization.
 
-
-### 3.3 High-Level Project Description and File Structure
+### 2.3 High-Level Project Description and File Structure
 
 The GrowgrEbuddy_PSA project is organized into several key directories, each serving a specific purpose. Below is an overview of the project's file structure:
 
@@ -189,22 +193,26 @@ GrowEbuddy_PSA/
 
 This structure ensures that the project is organized and maintainable, making it easier for developers to navigate and contribute to the codebase.
 
-### 3.4 Infrastructure and Deployment
+### 2.4 Infrastructure and Deployment
 The GrowgrEbuddy_PSA application is deployed on Heroku, utilizing Docker containers to ensure consistent environments across development, testing, and production. The deployment process includes:
 
 - **Docker Compose**: Used to define and run multi-container Docker applications, simplifying the setup of the development environment.
 - **Heroku**: The application is hosted on Heroku, which provides a cloud platform as a service (PaaS) for easy scaling and management.
 - **Continuous Integration/Continuous Deployment (CI/CD)**: GitHub Actions are configured to automate testing and deployment processes, ensuring that code changes are automatically tested and deployed to Heroku.
+- **Regular Maintenance**: 
+  - Schedule regular database maintenance tasks such as vacuuming and analyzing to optimize performance and reclaim storage. This can be done using cron jobs or a task scheduler like Celery.
 
-### 3.5 Security
+### 2.5 Security
 The application implements several security measures to protect user data and ensure safe interactions:
 
 - **Data Encryption**: User data is encrypted both at rest and in transit to prevent unauthorized access.
 - **Authentication**: A secure authentication system is implemented using OAuth 2.0, allowing users to log in safely.
 - **Privacy Settings**: Users have control over their shared information, with options to manage privacy settings.
 - **Data Management**: Users can export or delete their data upon request, ensuring compliance with data protection regulations.
+- **Monitoring and Logging**: 
+  - Integrate logging for API requests and database queries using a logging framework. Set up monitoring tools (e.g., Prometheus, Grafana) to track performance metrics and alert on anomalies.
 
-### 3.6 Tests
+### 2.6 Tests
 The testing strategy for GrowgrEbuddy_PSA includes various testing methodologies to ensure the application is robust and reliable:
 
 - **Unit Testing**: 
@@ -219,14 +227,14 @@ The testing strategy for GrowgrEbuddy_PSA includes various testing methodologies
 
 - **User Acceptance Testing**: Beta testers provide feedback through in-app feedback forms, allowing for real-world testing and validation of user stories.
 
-## 4. Data Model
+## 3. Data Model
 
-### 4.1 Data Model Diagram
-The data model for GrowgrEbuddy_PSA is designed to support the application's core features, including the virtual mascot, user progression, and habit tracking. Below is the Entity-Relationship Diagram (ERD) representing the main entities and their relationships.
+### 3.1 Data Model Diagram
+The data model for GrowgrEbuddy_PSA is designed to support the application's core features, including the virtual pet, user progression, and note management. Below is the Entity-Relationship Diagram (ERD) representing the main entities and their relationships.
 
-![Data Model Diagram](path/to/your/data_model_diagram.png)  <!-- Replace with the actual path to your ERD -->
+![Data Model Diagram](pGrowEbuddy_PSA\docs\development\technical_diagrams\ERD_Diagram_DB.mmd)  <!-- Replace with the actual path to your ERD -->
 
-### 4.2 Main Entities Description
+### 3.2 Main Entities Description
 The following are the main entities in the data model:
 
 1. **User**
@@ -237,25 +245,25 @@ The following are the main entities in the data model:
      - `password_hash`: Hashed password for authentication
      - `created_at`: Timestamp of account creation
    - **Relationships**:
-     - One-to-Many with **Mascot** (a user can have one mascot)
+     - One-to-Many with **Vpet** (a user can have multiple Vpets)
 
-2. **Mascot**
+2. **Vpet**
    - **Attributes**:
-     - `mascot_id`: Unique identifier for the mascot (Primary Key)
+     - `vpet_id`: Unique identifier for the virtual pet (Primary Key)
      - `user_id`: Foreign key referencing the User entity
-     - `level`: Current level of the mascot
-     - `experience_points`: Points accumulated by the mascot
-     - `mood`: Current mood state of the mascot
+     - `level`: Current level of the virtual pet
+     - `experience_points`: Points accumulated by the virtual pet
+     - `mood`: Current mood state of the virtual pet
    - **Relationships**:
      - Many-to-One with **User**
 
-3. **Habit**
+3. **Note**
    - **Attributes**:
-     - `habit_id`: Unique identifier for the habit (Primary Key)
+     - `note_id`: Unique identifier for the note (Primary Key)
      - `user_id`: Foreign key referencing the User entity
-     - `name`: Name of the habit
-     - `frequency`: How often the habit should be performed (e.g., daily, weekly)
-     - `streak`: Current streak of habit completion
+     - `title`: Title of the note
+     - `content`: Content of the note
+     - `created_at`: Timestamp of note creation
    - **Relationships**:
      - Many-to-One with **User**
 
@@ -269,9 +277,9 @@ The following are the main entities in the data model:
    - **Relationships**:
      - Many-to-One with **User**
 
-This data model supports the core functionalities of the GrowgrEbuddy_PSA application, allowing for user management, mascot evolution, habit tracking, and challenge completion.
+This data model supports the core functionalities of the GrowgrEbuddy_PSA application, allowing for user management, virtual pet evolution, note management, and challenge completion.
 
-## 5. API Specification
+## 4. API Specification
 
 The GrowgrEbuddy_PSA application exposes several RESTful API endpoints to facilitate communication between the frontend and backend. Below are the specifications for the main API endpoints. Note that user authentication endpoints are currently mocked and not implemented.
 
@@ -312,42 +320,74 @@ The GrowgrEbuddy_PSA application exposes several RESTful API endpoints to facili
       }
       ```
 
-### 2. Mascot Management
+### 2. Vpet Management
 
-- **Endpoint**: `/api/mascot`
+- **Endpoint**: `/api/vpets`
   - **Method**: GET
   - **Headers**: 
     - `Authorization: Bearer <token>`
   - **Response**:
-    - **200 OK**: Returns the user's mascot details.
+    - **200 OK**: Returns the user's Vpet details.
       ```json
       {
-        "mascot_id": "string",
-        "level": "number",
-        "experience_points": "number",
-        "mood": "string"
+        "vpets": [
+          {
+            "vpet_id": "string",
+            "level": "number",
+            "mood": "string",
+            "experience_points": "number"
+          }
+        ]
       }
       ```
 
-### 3. Habit Tracking
+### 3. Notes Management
 
-- **Endpoint**: `/api/habits`
+- **Endpoint**: `/api/notes`
   - **Method**: POST
   - **Headers**: 
     - `Authorization: Bearer <token>`
   - **Request Body**:
     ```json
     {
-      "name": "string",
-      "frequency": "string"
+      "title": "string",
+      "content": "string"
     }
     ```
   - **Response**:
-    - **201 Created**: Habit successfully created.
+    - **201 Created**: Note successfully created.
       ```json
       {
-        "habit_id": "string",
-        "message": "Habit created successfully."
+        "note_id": "string",
+        "message": "Note created successfully."
+      }
+      ```
+    - **400 Bad Request**: Validation errors.
+      ```json
+      {
+        "error": "Validation error message."
+      }
+      ```
+
+### 4. Challenge Management
+
+- **Endpoint**: `/api/challenges`
+  - **Method**: POST
+  - **Headers**: 
+    - `Authorization: Bearer <token>`
+  - **Request Body**:
+    ```json
+    {
+      "description": "string",
+      "points_reward": "number"
+    }
+    ```
+  - **Response**:
+    - **201 Created**: Challenge successfully created.
+      ```json
+      {
+        "challenge_id": "string",
+        "message": "Challenge created successfully."
       }
       ```
     - **400 Bad Request**: Validation errors.
@@ -359,44 +399,56 @@ The GrowgrEbuddy_PSA application exposes several RESTful API endpoints to facili
 
 This API specification provides a clear overview of the key endpoints that will be used in the GrowgrEbuddy_PSA application, facilitating communication between the frontend and backend components.
 
-## 6. User Stories
+## 5. User Stories
 
 ### User Story 1
-As a user, I want to interact with a virtual mascot that evolves based on my progress, so that I can feel a sense of connection and achievement in my personal development journey.
+As a user, I want to interact with a virtual pet (Vpet) that evolves based on my progress, so that I can feel a sense of connection and achievement in my personal development journey.
 
 ### User Story 2
 As a user, I want to access different virtual spaces, such as "The Cave" for introspection and "Samsara" for life challenges, so that I can engage in activities that promote my mental wellness and personal growth.
 
 ### User Story 3
-As a user, I want to track my daily habits and receive rewards for completing them, so that I can stay motivated and build positive routines.
+As a user, I want to track my daily notes and receive rewards for completing challenges, so that I can stay motivated and build positive routines.
 
 ### User Story 4
 As a user, I want to set daily challenges for myself, so that I can push my boundaries and achieve personal growth goals.
 
 ### User Story 5
-As a user, I want to monitor my mascot's mood and progress, so that I can understand how my actions impact my personal development journey.
+As a user, I want to monitor my Vpet's mood and progress, so that I can understand how my actions impact my personal development journey.
 
-## 7. Work Tickets
+## 6. Work Tickets
 
 ### Ticket 1 (Backend)
-**Ticket DEV-004: User Authentication**
-- **Description:** Implement user registration and login functionality.
-- **Priority:** High
-- **Assignee:** Backend Developer
-- **Acceptance Criteria:**
-  - Develop user registration with email and password
-  - Implement secure login system
-  - Create password reset functionality
+#### [Ticket DEV-007: Backend Development for GrowgrEbuddy_PSA](GrowEbuddy_PSA\docs\development\tickets\Backend_Development_Tickets.md)
+**-Description**  
+This ticket encompasses the entire backend development process for the GrowgrEbuddy_PSA application. It includes implementing user authentication, developing API endpoints for Vpets, Notes, and Challenges, integrating caching, setting up monitoring and logging, and ensuring thorough testing and documentation.
+**-Who is in charge**  
+- Backend Development Team
+**-Why**  
+This ticket is critical for establishing the core functionality of the backend, enabling user management, data handling, and performance optimization. It ensures that the application can effectively support user interactions and maintain a high level of performance.
+**-Acceptance Criteria**  
+- User authentication is implemented and tested.
+- API endpoints for Vpets, Notes, and Challenges are developed and documented.
+- Caching is integrated and tested for performance improvements.
+- Monitoring and logging systems are set up and verified.
+- All new features are covered by unit and integration tests.
+- Documentation is updated to reflect changes in the backend.
+**-Complete**  
+- [ ] 
+**-Results/Changes**  
+- Document the results or changes made after the ticket is completed.
+### **-Subtickets**
+  - [X] Yes
 
 ### Ticket 2 (Frontend)
-**Ticket DEV-002: Implement Virtual Mascot**
-- **Description:** Develop the core virtual mascot feature.
+**Ticket DEV-002: Implement Virtual Vpet**
+- **Description:** Develop the core virtual pet feature.
 - **Priority:** High
 - **Assignee:** Frontend Developer
 - **Acceptance Criteria:**
-  - Create basic mascot design with emoticon-based expressions
-  - Implement mascot evolution based on user progress
-  - Develop mascot interaction animations and sounds
+  - Create basic Vpet design with emoticon-based expressions
+  - Implement Vpet evolution based on user progress
+  - Develop Vpet interaction animations and sounds
 
 ### Ticket 3 (Database)
 **Ticket DEV-003: Develop Point System**
