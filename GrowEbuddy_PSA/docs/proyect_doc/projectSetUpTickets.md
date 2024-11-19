@@ -19,14 +19,14 @@
 - The guide is reviewed and approved by at least two team members.
 
 **-Complete**  
-- [ ]
+- [x] 
 
 **-Results/Changes**  
-- Document the results or changes made after the ticket is completed.
+- A comprehensive guide for setting up and shutting down local and Docker environments has been created and documented in `GrowEbuddy_PSA/docs/development/SETUPv2.md`.
 
 **-Has Subtickets?**  
   - [ ] Yes
-  - [ ] No
+  - [x] No
 
 </details>
 
@@ -52,14 +52,117 @@
 - The guide is validated by the development team.
 
 **-Complete**  
-- [ ]
+- [x] 
+
+**-Results/Changes**  
+- A comprehensive workflow guide has been developed, including visual aids and detailed instructions for setup, shutdown, and managing changes between environments.
+
+**-Has Subtickets?**  
+  - [x] Yes
+  - [ ] No
+
+### Subticket 2.1: Shutting Down Local Environment
+**-Description**  
+- Create a detailed guide for safely shutting down the local environment.
+
+**-Who is in charge**  
+- **Technical Writer**
+
+**-Why**  
+- To ensure developers know how to properly stop the server and deactivate the virtual environment.
+
+**-Acceptance Criteria**  
+- The guide includes clear steps for stopping the Django server and deactivating the virtual environment.
+
+**-Complete**  
+- [x] 
+
+**-Results/Changes**  
+- Documented in `GrowEbuddy_PSA/docs/development/shutting_down_local_environment.md`.
+
+---
+
+### Subticket 2.2: Shutting Down Docker Environment
+**-Description**  
+- Create a detailed guide for safely shutting down the Docker environment.
+
+**-Who is in charge**  
+- **Technical Writer**
+
+**-Why**  
+- To ensure developers know how to properly stop and remove Docker containers.
+
+**-Acceptance Criteria**  
+- The guide includes clear steps for stopping all services and removing containers.
+
+**-Complete**  
+- [x] 
+
+**-Results/Changes**  
+- Documented in `GrowEbuddy_PSA/docs/development/shutting_down_docker_environment.md`.
+
+---
+
+### Subticket 2.3: Workflow for Changes Between Environments
+**-Description**  
+- Develop a workflow for managing changes between local and Docker environments and pushing to GitHub.
+
+**-Who is in charge**  
+- **Project Manager**
+
+**-Why**  
+- To ensure a smooth transition of code changes between environments and maintain version control.
+
+**-Acceptance Criteria**  
+- The workflow includes steps for committing changes, pushing to GitHub, and pulling changes in both environments.
+
+**-Complete**  
+- [x] 
+
+**-Results/Changes**  
+- Documented in `GrowEbuddy_PSA/docs/development/workflow_changes_between_environments.md`.
+
+---
+
+### Subticket 2.4: Create Visual Aids for Workflow Guide
+**-Description**  
+- Develop visual aids (diagrams, flowcharts) to accompany the workflow guide for better understanding.
+
+**-Who is in charge**  
+- **Technical Writer/Designer**
+
+**-Why**  
+- To enhance the clarity of the workflow guide and provide visual representation of processes.
+
+**-Acceptance Criteria**  
+- Visual aids are created and integrated into the workflow guide.
+- Visuals are clear, informative, and easy to understand.
+
+**-Complete**  
+- [x] 
+
+**-Results/Changes**  
+- Integrated into `GrowEbuddy_PSA/docs/development/SETUPv2.md`.
+
+### Subticket 2.5: Create Diagrams and Workflows as Code
+**-Description**  
+- Develop diagrams and flowcharts to visually represent the setup, shutdown, and workflow processes for the GrowEbuddy_PSA project.
+
+**-Who is in charge**  
+- **Technical Writer/Designer**
+
+**-Why**  
+- To enhance the clarity of the documentation and provide visual representation of processes, making it easier for team members to understand workflows.
+
+**-Acceptance Criteria**  
+- Visual aids are created and integrated into the relevant documentation.
+- Visuals are clear, informative, and easy to understand.
+
+**-Complete**  
+- [ ] 
 
 **-Results/Changes**  
 - Document the results or changes made after the ticket is completed.
-
-**-Has Subtickets?**  
-  - [ ] Yes
-  - [ ] No
 
 </details>
 
