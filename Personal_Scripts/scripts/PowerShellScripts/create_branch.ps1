@@ -1,11 +1,10 @@
-# Check if a branch name is provided
+# Check if a branch name is provided as an argument
 if ($args.Count -eq 0) {
-    Write-Host "Usage: .\create_branch.ps1 <new-branch-name>"
-    exit 1
+    # Prompt the user for the new branch name
+    $newBranchName = Read-Host "Please enter the new branch name"
+} else {
+    $newBranchName = $args[0]
 }
-
-# Prompt the user for the new branch name
-$newBranchName = Read-Host "Please enter the new branch name"
 
 # Check if the user provided a branch name
 if (-not $newBranchName) {
