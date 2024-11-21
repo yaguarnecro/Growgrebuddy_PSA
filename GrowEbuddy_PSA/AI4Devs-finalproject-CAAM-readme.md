@@ -463,7 +463,36 @@ This ticket is critical for establishing the core functionality of the backend, 
 ## 8. Pull Requests
 
 ### Pull Request 1
-[Insert pull request details]
+[[Insert pull request details](https://github.com/yaguarnecro/Growgrebuddy_PSA/pull/5)]
+´´´´
+This pull request encompasses a series of significant updates and enhancements to the documentation and workflow processes for the GrowEbuddy_PSA project. The key changes include:
+Completion of Ticket 2.4: Create Visual Aids for Workflow Guide:
+Developed and integrated visual aids (diagrams and flowcharts) to enhance the clarity of the workflow guide.
+Created the following .mmd files:
+shutting_down_local_env.mmd
+shutting_down_Docker_env.mmd
+local_setup.mmd
+docker_setup.mmd
+ChangeBetweenEnv.mmd
+Generated corresponding .png images for each flowchart:
+shutting_down_local.png
+shutting_down_docker.png
+local_setup.png
+docker_setup.png
+ChangeBetweenEnv.png
+Updated the SETUPv2.md file to include references to these newly created images.
+2. Completion of Ticket 3: Update .gitignore:
+Reviewed and updated the .gitignore file to ensure all necessary entries for temporary files and sensitive information are included, maintaining the integrity of the codebase.
+3. Completion of Ticket 4: Organize Documentation:
+Proposed and implemented a new structure for the SETUPv2.md file, which includes:
+A table of contents for easy navigation.
+Categorized sections for setup instructions, shutdown procedures, visual aids, and best practices.
+Enhanced the overall clarity and accessibility of the documentation.
+Closing of Subticket 2.5:
+Closed Subticket 2.5, confirming that all necessary diagrams and workflows have been created and integrated into the documentation.
+These updates aim to improve the usability and maintainability of the project documentation, ensuring that all team members can easily access and understand the necessary workflows and processes.
+Please review the changes and provide feedback or approval for merging into the main branch. Thank you!
+´´´´
 
 ### Pull Request 2
 [Insert pull request details]
