@@ -142,7 +142,25 @@
 - [x] 
 
 **-Results/Changes**  
-- Integrated into `GrowEbuddy_PSA/docs/development/SETUPv2.md`.
+- Created the following `.mmd` files:
+  - `shutting_down_local_env.mmd`
+  - `shutting_down_Docker_env.mmd`
+  - `local_setup.mmd`
+  - `docker_setup.mmd`
+  - `ChangeBetweenEnv.mmd`
+  
+- Generated the corresponding `.png` images:
+  - `shutting_down_local.png`
+  - `shutting_down_docker.png`
+  - `local_setup.png`
+  - `docker_setup.png`
+  - `ChangeBetweenEnv.png`
+
+- Updated the `SETUPv2.md` file to include references to the newly created images.
+
+**-Has Subtickets?**  
+  - [ ] Yes
+  - [x] No
 
 ### Subticket 2.5: Create Diagrams and Workflows as Code
 **-Description**  
@@ -159,10 +177,21 @@
 - Visuals are clear, informative, and easy to understand.
 
 **-Complete**  
-- [ ] 
+- [x] 
 
 **-Results/Changes**  
-- Document the results or changes made after the ticket is completed.
+- All necessary diagrams and flowcharts have been created and integrated into the documentation, including:
+  - `shutting_down_local_env.mmd`
+  - `shutting_down_Docker_env.mmd`
+  - `local_setup.mmd`
+  - `docker_setup.mmd`
+  - `ChangeBetweenEnv.mmd`
+  
+- Corresponding images have been generated and referenced in `SETUPv2.md`.
+
+**-Has Subtickets?**  
+  - [ ] Yes
+  - [x] No
 
 </details>
 
@@ -186,22 +215,20 @@
 - The team is informed about the importance of ignoring sensitive files.
 
 **-Complete**  
-- [ ]
+- [x] 
 
 **-Results/Changes**  
-- Document the results or changes made after the ticket is completed.
+- The `.gitignore` file has been reviewed and updated to include all necessary entries for temporary files and sensitive information, ensuring the integrity of the codebase.
 
 **-Has Subtickets?**  
   - [ ] Yes
-  - [ ] No
+  - [x] No
 
 </details>
 
 ---
 
 ## Ticket 4: Organize Documentation
-<details>
-<summary>Click to expand</summary>
 
 **-Description**  
 - Organize documentation to ensure it is easy to navigate.
@@ -217,16 +244,14 @@
 - A central repository for documentation is established.
 
 **-Complete**  
-- [ ]
+- [x] 
 
 **-Results/Changes**  
-- Document the results or changes made after the ticket is completed.
+- The documentation in `SETUPv2.md` has been reorganized to include a table of contents and categorized sections, improving clarity and accessibility.
 
 **-Has Subtickets?**  
   - [ ] Yes
-  - [ ] No
-
-</details>
+  - [x] No
 
 ---
 

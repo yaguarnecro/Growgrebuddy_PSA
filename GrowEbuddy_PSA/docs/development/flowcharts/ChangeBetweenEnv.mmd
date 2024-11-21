@@ -1,0 +1,6 @@
+graph TD;
+    A[Local Changes Committed] --> B[Push Changes to GitHub];
+    B --> C[Pull Changes in Docker Environment];
+    C --> D[Docker Changes Committed];
+    D --> E[Push Changes to GitHub];
+    E --> F[Pull Changes in Local Environment];
