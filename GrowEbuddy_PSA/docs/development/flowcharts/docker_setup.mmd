@@ -1,0 +1,6 @@
+   graph TD;
+       A[Ensure Docker is Installed] --> B[Configure Docker Compose];
+       B --> C[Start Docker Containers];
+       C --> D[Run Prisma Migrations in Docker];
+       D --> E[Run Django Server in Docker];
+       E --> F[Conduct Tests in Docker];

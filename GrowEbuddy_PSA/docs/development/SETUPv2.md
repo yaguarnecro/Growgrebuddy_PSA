@@ -1,5 +1,32 @@
 # Comprehensive Workflow Guide for GrowEbuddy_PSA
 
+## Table of Contents
+- [Comprehensive Workflow Guide for GrowEbuddy\_PSA](#comprehensive-workflow-guide-for-growebuddy_psa)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Prerequisites](#prerequisites)
+    - [Local Environment Prerequisites](#local-environment-prerequisites)
+    - [Docker Environment Prerequisites](#docker-environment-prerequisites)
+  - [Setup Instructions](#setup-instructions)
+    - [Local Environment Setup](#local-environment-setup)
+    - [Docker Environment Setup](#docker-environment-setup)
+  - [Shutting Down Environments](#shutting-down-environments)
+    - [Shutting Down Local Environment](#shutting-down-local-environment)
+    - [Shutting Down Docker Environment](#shutting-down-docker-environment)
+  - [Workflow for Changes Between Environments](#workflow-for-changes-between-environments)
+    - [From Local to Docker](#from-local-to-docker)
+    - [From Docker to Local](#from-docker-to-local)
+  - [Visual Aids](#visual-aids)
+    - [Local Environment Setup Flowchart](#local-environment-setup-flowchart)
+    - [Docker Environment Setup Flowchart](#docker-environment-setup-flowchart)
+    - [Shutting Down Local Environment Flowchart](#shutting-down-local-environment-flowchart)
+    - [Shutting Down Docker Environment Flowchart](#shutting-down-docker-environment-flowchart)
+    - [Workflow for Changes Between Environments Flowchart](#workflow-for-changes-between-environments-flowchart)
+  - [Best Practices for Documentation and Repository Management](#best-practices-for-documentation-and-repository-management)
+  - [Conclusion](#conclusion)
+
+---
+
 ## Overview
 This guide outlines the workflow for setting up the GrowEbuddy_PSA project based on the environment being used. It includes instructions for local and Docker setups, as well as best practices for testing and documentation.
 
@@ -19,9 +46,9 @@ This guide outlines the workflow for setting up the GrowEbuddy_PSA project based
 
 ---
 
-## Local Environment Setup
+## Setup Instructions
 
-### Steps to Set Up Locally
+### Local Environment Setup
 1. **Clone the Repository**:
    ```bash
    # Clone the repository from GitHub to your local machine
@@ -78,35 +105,7 @@ This guide outlines the workflow for setting up the GrowEbuddy_PSA project based
    python manage.py runserver
    ```
 
-### Testing in Local Environment
-- Conduct unit tests and integration tests to ensure functionality.
-- Use the following command to run tests:
-   ```bash
-   # Run all tests defined in the Django application
-   python manage.py test
-   ```
-
----
-
-## Shutting Down Local Environment
-To safely shut down the local environment:
-1. **Stop the Django Development Server**:
-   - In the terminal where the server is running, press `Ctrl + C` to stop the server.
-   ```bash
-   # This command stops the Django development server
-   ```
-
-2. **Deactivate the Virtual Environment**:
-   ```bash
-   # Deactivate the virtual environment when done
-   deactivate
-   ```
-
----
-
-## Docker Environment Setup
-
-### Steps to Set Up with Docker
+### Docker Environment Setup
 1. **Ensure Docker is Installed**.
 2. **Configure Docker Compose**:
    - Update the `docker-compose.yml` file as needed.
@@ -129,15 +128,25 @@ To safely shut down the local environment:
    docker-compose exec backend python manage.py runserver 0.0.0.0:8000
    ```
 
-### Testing in Docker Environment
-- Run tests within the Docker container:
-   ```bash
-   docker-compose exec backend python manage.py test
-   ```
-
 ---
 
-## Shutting Down Docker Environment
+## Shutting Down Environments
+
+### Shutting Down Local Environment
+To safely shut down the local environment:
+1. **Stop the Django Development Server**:
+   - In the terminal where the server is running, press `Ctrl + C` to stop the server.
+   ```bash
+   # This command stops the Django development server
+   ```
+
+2. **Deactivate the Virtual Environment**:
+   ```bash
+   # Deactivate the virtual environment when done
+   deactivate
+   ```
+
+### Shutting Down Docker Environment
 To safely shut down the Docker environment:
 1. **Stop and Remove All Running Containers**:
    ```bash
@@ -153,55 +162,7 @@ To safely shut down the Docker environment:
 
 ---
 
-## Visual Aids
-
-### Local Environment Setup Flowchart
-```mermaid
-graph TD;
-    A[Clone Repository] --> B[Create Virtual Environment];
-    B --> C[Activate Virtual Environment];
-    C --> D[Install Required Packages];
-    D --> E[Set Up PostgreSQL];
-    E --> F[Run Prisma Migrations];
-    F --> G[Run Django Development Server];
-    G --> H[Conduct Tests];
-```
-
-### Docker Environment Setup Flowchart
-```mermaid
-graph TD;
-    A[Ensure Docker is Installed] --> B[Configure Docker Compose];
-    B --> C[Start Docker Containers];
-    C --> D[Run Prisma Migrations in Docker];
-    D --> E[Run Django Server in Docker];
-    E --> F[Conduct Tests in Docker];
-```
-
-### Shutting Down Local Environment Flowchart
-```mermaid
-graph TD;
-    A[Stop Django Development Server] --> B[Deactivate Virtual Environment];
-```
-
-### Shutting Down Docker Environment Flowchart
-```mermaid
-graph TD;
-    A[Stop and Remove All Running Containers] --> B[Remove Unused Docker Images (Optional)];
-```
-
-### Workflow for Changes Between Environments Flowchart
-```mermaid
-graph TD;
-    A[Local Changes Committed] --> B[Push Changes to GitHub];
-    B --> C[Pull Changes in Docker Environment];
-    C --> D[Docker Changes Committed];
-    D --> E[Push Changes to GitHub];
-    E --> F[Pull Changes in Local Environment];
-```
-
----
-
-## Workflow for Changes from One Environment to Another
+## Workflow for Changes Between Environments
 
 ### From Local to Docker
 1. **Ensure Local Changes Are Committed**:
@@ -249,6 +210,25 @@ graph TD;
 
 ---
 
+## Visual Aids
+
+### Local Environment Setup Flowchart
+![Local Environment Setup Flowchart](flowcharts/images/local_setup.png)
+
+### Docker Environment Setup Flowchart
+![Docker Environment Setup Flowchart](flowcharts/images/docker_setup.png)
+
+### Shutting Down Local Environment Flowchart
+![Shutting Down Local Environment Flowchart](flowcharts/images/shutting_down_local.png)
+
+### Shutting Down Docker Environment Flowchart
+![Shutting Down Docker Environment Flowchart](flowcharts/images/shutting_down_docker.png)
+
+### Workflow for Changes Between Environments Flowchart
+![Workflow for Changes Between Environments Flowchart](flowcharts/images/ChangeBetweenEnv.png)
+
+---
+
 ## Best Practices for Documentation and Repository Management
 - **Use Descriptive Commit Messages**: Clearly describe what changes were made in each commit.
 - **Regularly Pull Changes**: Always pull the latest changes from the remote repository before starting new work.
@@ -265,3 +245,4 @@ graph TD;
 
 ## Conclusion
 This guide provides a comprehensive overview of setting up, shutting down, and managing the workflow for the GrowEbuddy_PSA project in both local and Docker environments. By following these steps, developers can ensure a smooth development process and maintain high standards for testing and documentation.
+

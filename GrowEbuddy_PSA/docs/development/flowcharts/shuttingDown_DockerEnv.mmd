@@ -1,0 +1,6 @@
+graph TD;
+    subgraph Optional Steps
+        B[Remove Unused Docker Images]
+    end
+    A[Stop and Remove All Running Containers] --> B[Remove Unused Docker Images];
+    style B fill:#f9f,stroke:#333,stroke-width:2px; %% Legend: Optional step highlighted
