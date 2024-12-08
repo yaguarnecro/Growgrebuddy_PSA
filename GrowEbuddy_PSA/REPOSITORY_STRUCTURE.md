@@ -1,7 +1,11 @@
-# GrowgrEbuddy_PSA Repository Structure
+# Repository Structure
 
-This document outlines the structure of the GrowgrEbuddy_PSA repository and explains the best practices and principles applied.
+## Overview
+- The repository contains the following main directories:
+  - `docs`: Documentation files.
+  - `src`: Source code for the application.
 
-## Directory Structure
+## Important Files
+- `SETUPv2.md`: Instructions for setting up the local environment.
 
 
